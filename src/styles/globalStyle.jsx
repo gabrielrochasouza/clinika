@@ -22,6 +22,9 @@ const GlobalStyle = createGlobalStyle`
             background-color: var(--bg-t-hover);
         }
     }
+    h1 , h2,h3,h4,h5,h6,li,span{
+        color: var(--tx-p);
+    }
     svg{
         cursor: pointer;
     }
@@ -32,7 +35,18 @@ const GlobalStyle = createGlobalStyle`
         text-decoration: none;
     }
     :root{
-        --bg-p:#e1e1e1;
+        --bg-p:${(props)=>props.theme.bgP};
+        --bg-s: ${(props)=>props.theme.bgS};
+        --bg-t: ${(props)=>props.theme.bgT};
+        --bg-t-hover: ${(props)=>props.theme.bgTHover};
+        --tx-p: ${(props)=>props.theme.txP};
+        --tx-s: ${(props)=>props.theme.txS};
+        --tx-w: ${(props)=>props.theme.txW};
+        --tx-t: ${(props)=>props.theme.txT};
+        --tx-f-p:'Open Sans', sans-serif;
+        --tx-f-s:'Montserrat', sans-serif;
+
+        /* --bg-p:#e1e1e1;
         --bg-s: #fff;
         --bg-t: #3f63f2;
         --bg-t-hover:#2747c8;
@@ -41,7 +55,7 @@ const GlobalStyle = createGlobalStyle`
         --tx-w: #fff;
         --tx-t: #3f63f2;
         --tx-f-p:'Open Sans', sans-serif;
-        --tx-f-s:'Montserrat', sans-serif;
+        --tx-f-s:'Montserrat', sans-serif; */
     }
     @keyframes fadeUp {
         from{

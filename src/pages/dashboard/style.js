@@ -21,6 +21,15 @@ export const DashboardContainer = styled.div`
             height: 95%;
             gap: 16px;
             margin: 0 16px 16px;
+            header{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                button{
+                    padding: 7px 10px;
+                    font-size: .7rem;
+                }
+            }
             @media (max-width: 1200px) {
                 display: initial;
                 >div{

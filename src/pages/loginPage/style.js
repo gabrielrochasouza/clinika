@@ -28,9 +28,10 @@ const LoginContainer = styled.div`
             justify-content: center;
             border-radius: 50%;
             background-color: var(--bg-t);
+            color: var(--tx-w);
             left: calc(50% - 20px);
             svg{
-                color: var(--bg-s);
+                color: var(--tx-w);
 
             }
         }
@@ -40,7 +41,7 @@ const LoginContainer = styled.div`
             color: var(--tx-t);
             font-weight: 600;
         }
-        h1{
+        h1,h2{
             font-size: 2rem;
         }
     }

@@ -12,6 +12,8 @@ const LoginPage = ()=>{
     const {login} = useLogin()
     const {register, handleSubmit} = useForm()
     const [disabled, setDisabled] = useState(false);
+    const [forgotPassword, setForgotPassword] = useState(false)
+
     const loginSubmission = async (data)=>{
         setDisabled(true)
         const response = await login(data)
@@ -23,6 +25,8 @@ const LoginPage = ()=>{
     }
     return(
         <LoginContainer>
+                {forgotPassword===false ? (
+
             <form className="box" onSubmit={handleSubmit(loginSubmission)}>
                 <div className="icon-lock">
                 <FaLock/>
@@ -32,10 +36,29 @@ const LoginPage = ()=>{
                 <Input register={register} inputName="email" name={'email'} type={'email'}/>
                 <Input register={register} inputName="password" name={'password'} isPassword/>
                 <Button disabled={disabled} type={'submit'} text={'Entrar'}/>
-                <span className="forget-password">
+                <span className="forget-password" onClick={()=>setForgotPassword(true)}>
                     Esqueceu a senha?
                 </span>
             </form>
+
+
+                ):(
+                    <form className="box" onSubmit={handleSubmit(()=>setDisabled(true))}>
+                    <div className="icon-lock">
+                    <FaLock/>
+                    </div>
+                    <h2>Digite seu email</h2>
+                    <span>Enviaremos um email para recuperar a senha</span>
+                    <Input  register={register} inputName="email" name={'email'} type={'email'}/>
+                    <Button disabled={disabled} type={'submit'} text={'Enviar'}/>
+                    <span className="forget-password" onClick={()=>{
+                        setForgotPassword(false)
+                        setDisabled(false)
+                    }}>
+                        Voltar
+                    </span>
+                </form>
+                )}
         </LoginContainer>
     )
 

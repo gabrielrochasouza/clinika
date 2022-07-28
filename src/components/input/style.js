@@ -26,6 +26,10 @@ export const InputContainer = styled.div`
     right: 10px;
     top: 8px;
     cursor: pointer;
+    color: var(--tx-p);
+    svg{
+      color: var(--tx-p);
+    }
   }
   .user-label {
     position: absolute;
