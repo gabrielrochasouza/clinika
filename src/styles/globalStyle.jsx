@@ -43,20 +43,21 @@ const GlobalStyle = createGlobalStyle`
         --tx-s: ${(props)=>props.theme.txS};
         --tx-w: ${(props)=>props.theme.txW};
         --tx-t: ${(props)=>props.theme.txT};
+        --border: ${(props)=>props.theme.border};
         --tx-f-p:'Open Sans', sans-serif;
         --tx-f-s:'Montserrat', sans-serif;
 
-        /* --bg-p:#e1e1e1;
-        --bg-s: #fff;
-        --bg-t: #3f63f2;
-        --bg-t-hover:#2747c8;
-        --tx-p: #000;
-        --tx-s: #222;
-        --tx-w: #fff;
-        --tx-t: #3f63f2;
-        --tx-f-p:'Open Sans', sans-serif;
-        --tx-f-s:'Montserrat', sans-serif; */
     }
+
+    ::-webkit-scrollbar-thumb{
+        background-color: var(--bg-p);
+    }
+    ::-webkit-scrollbar{
+        width: 3px;
+        height: 3px;
+        background-color: var(--bg-s);
+    }
+
     @keyframes fadeUp {
         from{
             opacity: 0;

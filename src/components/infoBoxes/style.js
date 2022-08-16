@@ -16,6 +16,7 @@ export const InfoBoxesContainer = styled.div`
       background-color: var(--bg-t);
       span {
         color: var(--tx-w);
+        
       }
     }
     @media (max-width:1000px) {
@@ -37,6 +38,9 @@ export const InfoBoxesContainer = styled.div`
       display: block;
       font-size: 0.7rem;
       color: var(--tx-s);
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
     }
   }
 `;

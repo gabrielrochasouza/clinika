@@ -10,11 +10,14 @@ export const HeaderContainer = styled.header`
   position: sticky;
   top: 0;
   svg {
-    font-size: 25px;
+    font-size: 30px;
     color: var(--tx-p);
   }
   .contact {
     position: relative;
+    svg {
+      color: var(--tx-t);
+    }
     .box-contact {
         position: absolute;
         top: 45px;
@@ -22,10 +25,10 @@ export const HeaderContainer = styled.header`
         background-color: var(--bg-s);
         padding:5px 10px;
         border-radius: 5px;
-        font-size: 0.7rem;
+        font-size: 0.85rem;
         border: 1px solid var(--tx-s);
         z-index: 2;
-        width: 110px;
+        width: 144px;
         animation: fadeUp 500ms;
         >li{
             cursor: pointer;
@@ -37,7 +40,7 @@ export const HeaderContainer = styled.header`
                 }
             }
             svg{
-                font-size: 0.5rem;
+                font-size: 0.7rem;
                 margin:  0 8px 0 0;
             }
         }
@@ -61,7 +64,7 @@ export const HeaderContainer = styled.header`
     align-items: center;
     gap: 10px;
     > span {
-      font-size: 0.6rem;
+      font-size: 0.7rem;
     }
   }
 `;

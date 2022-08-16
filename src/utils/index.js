@@ -11,3 +11,20 @@ export const compareTimePassedSinceLastLogin = ()=>{
     }
 }
 
+export const getTodayDate = ()=>{
+    const date = new Date()
+    const day = date.getDate()
+    const month = date.getMonth() + 1
+    const year = date.getFullYear()
+    const hour = date.getHours()
+    const minutes = date.getMinutes()
+    const dateObj = {
+        day,
+        month,
+        year,
+        hour,
+        minutes,
+        now:`${day}-${month}-${year} ${hour}:${minutes}` 
+    }
+    return dateObj
+}

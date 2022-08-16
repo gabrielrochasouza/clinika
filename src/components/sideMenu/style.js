@@ -26,6 +26,7 @@ export const SideMenuContainer = styled.aside`
     text-overflow: ellipsis;
     overflow: hidden;
     animation-delay: 1000ms;
+    color: var(--tx-w);
     white-space: nowrap;
     display: ${(props) => {
       return props.open ? "initial" : "none";
@@ -45,6 +46,7 @@ export const SideMenuContainer = styled.aside`
     gap: 10px;
     font-family: var(--tx-f-s);
     font-size: 16px;
+    color: var(--tx-w);
     font-style: 900;
     margin: 10px 0;
     position: relative;
@@ -91,7 +93,7 @@ export const SideMenuContainer = styled.aside`
     background-color: ${(props) => props.open && "var(--bg-p)"};
     border-radius: 20px 0 0 20px;
     color: ${(props) => props.open && "var(--tx-t)"};
-    svg {
+    svg, span {
       color: ${(props) => props.open && "var(--tx-t)"};
     }
   }

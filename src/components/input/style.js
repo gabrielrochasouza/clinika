@@ -39,6 +39,10 @@ export const InputContainer = styled.div`
     transform: translateY(0.9rem);
     font-size: 0.8rem;
     transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 90%;
   }
 
   .input:focus,

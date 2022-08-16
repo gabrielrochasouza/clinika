@@ -2,15 +2,17 @@ import { SideMenuContainer } from "./style"
 import {AiFillMedicineBox} from 'react-icons/ai'
 import {BsFillPeopleFill,BsCalendarDateFill} from 'react-icons/bs'
 import {FaCog} from 'react-icons/fa'
-import {FaNotesMedical} from 'react-icons/fa'
+import {FaNotesMedical, FaHandshake} from 'react-icons/fa'
 import {BiLogOut, BiArrowToLeft} from 'react-icons/bi'
 import { useState } from "react"
 import {RiCalendarCheckLine} from 'react-icons/ri'
 import { useLogin } from "../../providers/login"
+import { useModal } from "../../providers/modal"
 
 
 const SideMenu = ()=>{
     const {logout, open, openClose} = useLogin()
+    const {openModalConvenio, openCloseModalConvenio} = useModal()
     return(
         <SideMenuContainer open={open}>
             <ul>
@@ -47,6 +49,12 @@ const SideMenu = ()=>{
                     <FaCog/>
                     <span>Configurações</span>
                     {!open && <div className="box-message">Configurações</div>}
+                    
+                </li>
+                <li onClick={openCloseModalConvenio}>
+                    <FaHandshake/>
+                    <span>Convênio</span>
+                    {!open && <div className="box-message">Convênio</div>}
                     
                 </li>
                 <li onClick={()=>logout()}>

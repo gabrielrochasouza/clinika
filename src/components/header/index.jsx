@@ -3,12 +3,12 @@ import { HiUserCircle } from "react-icons/hi";
 import { useLogin } from "../../providers/login";
 import { HeaderContainer } from "./style";
 import {FaUserAlt} from 'react-icons/fa'
-import {AiOutlineLock} from 'react-icons/ai'
+import {AiOutlineLock, AiOutlineLogout} from 'react-icons/ai'
 import {MdOutlineVisibility} from 'react-icons/md'
 import { useState } from "react";
 
 const Header = () => {
-  const { openClose } = useLogin();
+  const { openClose, logout } = useLogin();
   const [contactBoxOpen, setContactBoxOpen] = useState(false)
   return (
     <HeaderContainer>
@@ -29,6 +29,10 @@ const Header = () => {
             <li>
                 <AiOutlineLock/>
                 Alterar senha
+            </li>
+            <li onClick={logout}>
+                <AiOutlineLogout/>
+                Sair
             </li>
         </ul>
         )}
