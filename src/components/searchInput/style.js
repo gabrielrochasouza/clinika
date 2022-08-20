@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 export const SearchInputContainer = styled.form`
     border-radius: 40px;
-    padding: 2px 4px;
-    display: flex;
+    padding: 2px 5px;
+    display: flex ;
     align-items: center;
     justify-content: center;
     display: inline-block;
@@ -19,9 +19,12 @@ export const SearchInputContainer = styled.form`
         width: 150px;
         transition: 1s all;
     }
+    :hover input, input:focus{
+        margin: 0 0 0 5px;
+    }
     input{
         color: var(--tx-p);
-        margin: 0 0 0 5px;
+        margin: 0 0 0 0px;
         transition: 1s all;
         outline: 0;
         border: 0;

@@ -7,11 +7,15 @@ import InfoBoxes from "../../components/infoBoxes";
 import TablePacientes from "../../components/tablePacientes";
 import TableConsultas from "../../components/tableConsultas";
 import TableMedicos from "../../components/tableMedicos";
+import Loader from "../../components/loader";
+import { useDashboard } from "../../providers/dashboard";
+import TableConsultasOverview from "../../components/tableOverviewConsultas";
 
 const Dashboard = () => {
+  
+  const {currentSelection} = useDashboard()
+  
   compareTimePassedSinceLastLogin();
-
-
   if (!localStorage.getItem("@clinicaToken")) {
     return <Navigate to={"/"} />;
   }
@@ -21,9 +25,35 @@ const Dashboard = () => {
       <main>
         <Header />
         <InfoBoxes />
-        <TablePacientes/>
-        <TableConsultas/>
-        <TableMedicos/>
+        {currentSelection==="overview" ? (
+          <div className="overview">
+            <TablePacientes/>
+            <TableConsultasOverview/>
+          </div>
+        ):(
+          currentSelection==="pacientes" ? (
+            <>
+            <TablePacientes/>
+            </>
+          ):(
+            currentSelection==="consultas" ? (
+            <>
+            <TableConsultas/>
+            </>
+          ):
+            currentSelection==="agendas" ? (
+            <>
+            <TableConsultas/>
+            
+            </>
+          ):currentSelection==="medicos" && (
+            <>
+            <TableMedicos/>
+            </>
+          )
+          )
+
+        )}
 
       </main>
     </DashboardContainer>

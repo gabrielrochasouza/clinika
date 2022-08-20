@@ -17,10 +17,40 @@ const GlobalStyle = createGlobalStyle`
         color: var(--tx-w);
         border-radius: 10px;
         transition: 500ms all;
+        padding:  6px;
         :hover{
             transition: 500ms all;
             background-color: var(--bg-t-hover);
         }
+    }
+    .will-pass{
+        background-color: #00b40f;
+        color: var(--tx-w);
+        border-radius: 4px;
+        padding: 3px;
+    }
+    .passed{
+        border-radius: 4px;
+        color: var(--tx-w);
+        background-color: red;
+        padding: 3px;
+        position: relative;
+    }
+    .two-columns{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .upSpacing{
+        margin: 10px 0 0;
+    }
+    .undelineColored{
+        color: var(--tx-s);
+        font-size: 0.7rem;
+        cursor: pointer;
+    }
+    p{
+        font-size: 0.8rem;
     }
     h1 , h2,h3,h4,h5,h6,li,span{
         color: var(--tx-p);

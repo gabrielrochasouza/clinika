@@ -12,7 +12,7 @@ export const lightThemeObject = {
 
 export const darkThemeObject = {
     bgP:'#262626',
-    bgS:'#1a1a1a',
+    bgS:'#1e1e1e',
     bgT:'#3f98f4',
     bgTHover:'#1d63ab',
     txP:'#fff',

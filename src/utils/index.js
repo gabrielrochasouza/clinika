@@ -24,7 +24,23 @@ export const getTodayDate = ()=>{
         year,
         hour,
         minutes,
-        now:`${day}-${month}-${year} ${hour}:${minutes}` 
+        nowDateTime:`${day}-${month}-${year} ${hour}:${minutes}`,
+        nowDate:`${day}-${month}-${year}` 
     }
     return dateObj
 }
+
+
+export const timePassed = (finalHour)=>{
+    const [finalHours, finalMinutes] = finalHour.split(":")
+    const date = new Date()
+    const nowHour = date.getHours()
+    const nowMinutes = date.getMinutes()
+    if(Number(nowHour) > Number(finalHours)){
+        return true
+    }else if(Number(nowHour)===Number(finalHours)){
+        return Number(nowMinutes) > Number(finalMinutes) ? true : false
+    }
+    return false
+}
+

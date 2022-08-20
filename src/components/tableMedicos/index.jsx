@@ -2,10 +2,14 @@ import Table from "../table";
 import { useMedico } from "../../providers/medicos";
 import { useEffect } from "react";
 import SearchInput from "../searchInput";
+import { useModal } from "../../providers/modal";
+import Loader from "../loader";
 
 
 const TableMedicos = () => {
     const {medicos, getMedicos} = useMedico()
+    const {openCloseModalCreateMedico} = useModal()
+    
     useEffect(()=>{
         getMedicos()
     },[])
@@ -16,7 +20,7 @@ const TableMedicos = () => {
         headerBtn={
         <>
         <SearchInput placeholder="Pesquisar médico"/>
-        <button>Cadastrar Médico</button>
+        <button onClick={openCloseModalCreateMedico}>Cadastrar Médico</button>
         </>
         }
         next={medicos?.next}
@@ -33,7 +37,7 @@ const TableMedicos = () => {
         }
         body={
           <>
-            {medicos.results && medicos.results.map(medico=>(
+            {medicos?.results ? medicos.results.map(medico=>(
             <li key={medico.id}>
                 <span className="nome">{medico.nome}</span>
                 <span className="email">{medico.email}</span>
@@ -42,7 +46,7 @@ const TableMedicos = () => {
                 <span className="consultas">{medico.registro_profissional}</span>
                 <span className="consultas">{medico.consultas_a_fazer_hoje}</span>
             </li>
-            ))}
+            )) : (<Loader/>)}
 
           </>
         }

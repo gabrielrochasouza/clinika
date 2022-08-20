@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ModalContainer = styled.div`
     width: 100vw;
     z-index: 20;
-    padding: 40px 20px;
+    padding: 30px 20px;
     min-height:100vh;
     height: 100%;
     position: fixed;
@@ -13,14 +13,33 @@ export const ModalContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: auto;
     .modal-box{
         background-color: var(--bg-s);
         color: var(--tx-p);
         max-width: 520px;
         width: 100%;
         border-radius: 10px;
-        overflow: hidden;
+        overflow: auto;
         animation: scaleUp 1s;
+        max-height: 100%;
+        position: relative;
+    }
+    .modal-box::-webkit-scrollbar{
+        background-color: transparent;
+
+    }
+    .modal-box::-webkit-scrollbar-thumb{
+        background-color: transparent;
+        
+    }
+    .modal-box::-webkit-scrollbar-track{
+        background-color: var(--bg-s);
+        
+    }
+    .modal-box::-webkit-scrollbar-button{
+        height: 30px;
+        background-color: transparent;
     }
     .modal-header{
         display: flex;
@@ -29,9 +48,17 @@ export const ModalContainer = styled.div`
         background-color: var(--bg-s);
         padding: 16px;
         border-bottom: 1px solid var(--bg-p);
+        position: sticky;
+        top: 0;
+        left: 0;
+        z-index: 22;
+        span,svg{
+            color: var(--tx-p);
+        }
     }
     .modal-body{
         padding: 20px 16px 16px;
+        overflow: auto;
     }
 
     @keyframes scaleUp {

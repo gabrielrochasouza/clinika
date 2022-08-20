@@ -6,7 +6,7 @@ export const InputContainer = styled.div`
   width: 100%;
   .input {
     border: solid 1.5px #9e9e9e;
-    border-radius: 1rem;
+    border-radius: 0.7rem;
     background: none;
     width: 100%;
     padding: 0.8rem;
@@ -34,7 +34,7 @@ export const InputContainer = styled.div`
   .user-label {
     position: absolute;
     left: 15px;
-    color: var(--tx-t);
+    color: var(--tx-p);
     pointer-events: none;
     transform: translateY(0.9rem);
     font-size: 0.8rem;

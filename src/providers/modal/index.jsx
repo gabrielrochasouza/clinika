@@ -11,12 +11,23 @@ export const ModalProvider = ({children})=>{
     const [openModalCreatePaciente, setOpenModalCreatePaciente] = useState(false)
     const openCloseModalCreatePaciente = ()=>setOpenModalCreatePaciente(!openModalCreatePaciente)
 
+    const [openModalCreateMedico, setOpenModalCreateMedico] = useState(false)
+    const openCloseModalCreateMedico = ()=>setOpenModalCreateMedico(!openModalCreateMedico)
+
+    const [openModalConsultaDetails, setOpenModalConsultaDetails] = useState(false)
+    const openCloseModalConsultaDetails = ()=>setOpenModalConsultaDetails(!openModalConsultaDetails)
+
+
     return(
         <ModalContext.Provider value={{
             openModalConvenio,
             openCloseModalConvenio,
             openModalCreatePaciente,
-            openCloseModalCreatePaciente
+            openCloseModalCreatePaciente,
+            openModalCreateMedico,
+            openCloseModalCreateMedico,
+            openModalConsultaDetails,
+            openCloseModalConsultaDetails
         }}>
             {children}
         </ModalContext.Provider>

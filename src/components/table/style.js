@@ -4,7 +4,7 @@ export const TableContainer = styled.div`
     display: flex;
     height: 95%;
     gap: 16px;
-    margin: 0 16px 16px;
+    margin: 0 10px 16px;
     background-color: var(--bg-s);
     border-radius: 16px;
     padding: 20px;

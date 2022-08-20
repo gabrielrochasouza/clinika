@@ -8,7 +8,9 @@ const SearchInput = ({submitFunction, placeholder="Faça sua pesquisa"})=>{
             e.preventDefault()
             submitFunction()
         }}>
+            <span>
             <AiOutlineSearch/>
+            </span>
             <input type="text" placeholder={placeholder} />
             
         </SearchInputContainer>

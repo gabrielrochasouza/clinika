@@ -4,7 +4,6 @@ import {useForm} from 'react-hook-form'
 import Input from "../input";
 import Button from "../submitButton";
 import { useState } from "react";
-import { useConvenio } from "../../providers/convenio";
 import { cpfMask, dateBirthMask, telMask } from "../../masks";
 
 
@@ -26,10 +25,8 @@ const ModalCriarPaciente = ()=>{
                     <Input inputName={"Insira o nome do paciente"} name="nome" register={register} />
                     <Input inputName={"Insira o email do paciente"} type="email" name="email" register={register} />
                     <Input inputName={"Insira o cpf do paciente"} name="cpf" mask={cpfMask} register={register} />
-                    <div className="two-column" style={{display:"flex", margin:"-20px 0", gap:"12px"}}>
-                        <Input inputName={"Insira o telefone do paciente"} mask={telMask} name="telefone" register={register} />
-                        <Input inputName={"Data de nascimento"} name="data_nascimento" mask={dateBirthMask} register={register} />
-                    </div>
+                    <Input inputName={"Insira o telefone do paciente"} mask={telMask} name="telefone" register={register} />
+                    <Input inputName={"Data de nascimento"} type={"date"} name="data_nascimento" register={register} />
                     <Input inputName={"Insira o convênio"} name="convenio" register={register} />
                     <Button disabled={disable} text={"Criar"} />
                 </form>

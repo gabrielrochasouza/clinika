@@ -16,6 +16,20 @@ export const DashboardContainer = styled.div`
             border-radius: 0px 0 0 0px;
             flex-basis: 100%;
         }
+        .overview{
+            >div:nth-child(1){
+                flex: 1;
+            }
+            display: flex;
+            flex-wrap: wrap;
+            @media (max-width: 1300px) {
+                flex-direction: column;
+                >div:nth-child(2){
+                    flex: 1;
+                }
+            }
+
+        }
 
     }
 

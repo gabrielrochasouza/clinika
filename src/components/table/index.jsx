@@ -1,8 +1,9 @@
+import Loader from "../loader";
 import { TableContainer } from "./style";
 
-const Table = ({ headerTitle, body, headerBtn, tableHeader, next, previous, nextFunction, previousFunction }) => {
-  return (
-    <TableContainer>
+const Table = ({ headerTitle, body, headerBtn, tableHeader, next, previous, nextFunction, previousFunction, style }) => {
+    return (
+    <TableContainer style={style}>
       <div className="table-header">
         <span className="table-header__title">{headerTitle}</span>
         <div className="table-header__btn">{headerBtn}</div>
@@ -11,8 +12,7 @@ const Table = ({ headerTitle, body, headerBtn, tableHeader, next, previous, next
             <li className="table-body-header">
             {tableHeader}
             </li>
-                
-            {body}
+            {body.props.children ? body : <Loader/>}
       </ul>
       <div className="table-footer">
         {previous && <button onClick={previousFunction}>Voltar</button>}

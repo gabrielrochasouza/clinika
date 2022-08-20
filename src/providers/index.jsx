@@ -1,5 +1,6 @@
 import { ConsultaProvider } from "./consultas";
 import { ConvenioProvider } from "./convenio";
+import { DashboardProvider } from "./dashboard";
 import { LoginProvider } from "./login";
 import { MedicoProvider } from "./medicos";
 import { ModalProvider } from "./modal";
@@ -12,7 +13,9 @@ const Provider = ({ children }) => {
         <MedicoProvider>
           <ConsultaProvider>
             <ConvenioProvider>
-              <UsuariosProvider>{children}</UsuariosProvider>
+              <DashboardProvider>
+                <UsuariosProvider>{children}</UsuariosProvider>
+              </DashboardProvider>
             </ConvenioProvider>
           </ConsultaProvider>
         </MedicoProvider>

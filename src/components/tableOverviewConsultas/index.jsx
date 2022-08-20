@@ -1,22 +1,26 @@
 import Table from "../table";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useConsulta } from "../../providers/consultas";
 import Loader from "../loader";
-import { useModal } from "../../providers/modal";
+import { getTodayDate } from "../../utils";
 import ModalConsulta from "../modalConsultaDetails";
+import { useModal } from "../../providers/modal";
+import { useState } from "react";
+import { timePassed } from "../../utils";
 
-
-const TableConsultas = ({today}) => {
+const TableConsultasOverview = ({today}) => {
     const {consultas, getConsultas} = useConsulta()
     const { openModalConsultaDetails, openCloseModalConsultaDetails } = useModal();
     const [consultaInfo, setConsultaInfo] = useState({})
     useEffect(()=>{
-        getConsultas(today)
+        getConsultas(getTodayDate().nowDate)
     },[])
   return (
     <>
+    
       <Table
-        headerTitle={"Consultas"}
+      style={{minWidth:'350px'}}
+        headerTitle={"Consultas Hoje"}
         headerBtn={
             <>
                 <button>Filtro</button>
@@ -28,10 +32,7 @@ const TableConsultas = ({today}) => {
           <>
             <span >Paciente</span>
             <span >Médico</span>
-            <span>Horário e Dia</span>
-            <span >Confirmado</span>
-            <span >Compareceu</span>
-            <span >Pago</span>
+            <span>Horário</span>
           </>
         }
         body={
@@ -43,10 +44,12 @@ const TableConsultas = ({today}) => {
             }}>
                 <span>{consulta.paciente.nome}</span>
                 <span >{consulta.medico.nome}</span>
-                <span >{consulta.agenda.horario_inicial}-{consulta.agenda.horario_final} - {consulta.agenda.dia_da_consulta}</span>
-                <span>{consulta.confirmado ? "Sim" : "Não"}</span>
-                <span>{consulta.compareceu ? "Sim" : "Não"}</span>
-                <span>{consulta.pago ? "Sim" : "Não"}</span>
+                <span  >
+                    <strong className={timePassed(consulta.agenda.horario_final) ? "passed" : "will-pass"}>
+                    {consulta.agenda.horario_inicial}-{consulta.agenda.horario_final}
+                    </strong>
+                </span>
+
             </li>
             )) : <Loader/> }
 
@@ -58,4 +61,4 @@ const TableConsultas = ({today}) => {
   );
 };
 
-export default TableConsultas;
+export default TableConsultasOverview;

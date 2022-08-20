@@ -3,6 +3,7 @@ import { Toaster } from "react-hot-toast";
 import Input from "./components/input";
 import LightDark from "./components/lightDark";
 import ModalConvenio from "./components/modalConvenio";
+import ModalCriarMedico from "./components/modalCriarMedico";
 import ModalCriarPaciente from "./components/modalCriarPaciente";
 import { useModal } from "./providers/modal";
 import Router from "./routes";
@@ -21,7 +22,7 @@ function App() {
     );
     setDarkTheme(!darkTheme);
   };
-  const { openModalConvenio, openModalCreatePaciente } = useModal();
+  const { openModalConvenio, openModalCreatePaciente, openModalCreateMedico } = useModal();
 
   return (
     <>
@@ -31,6 +32,7 @@ function App() {
       <LightDark changeTheme={changeTheme} darkTheme={darkTheme} />
       {openModalConvenio && <ModalConvenio />}
       {openModalCreatePaciente && <ModalCriarPaciente />}
+      {openModalCreateMedico && <ModalCriarMedico/>}
     </>
   );
 }
