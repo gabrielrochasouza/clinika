@@ -10,53 +10,47 @@ import TableMedicos from "../../components/tableMedicos";
 import Loader from "../../components/loader";
 import { useDashboard } from "../../providers/dashboard";
 import TableConsultasOverview from "../../components/tableOverviewConsultas";
+import Agenda from "../../components/agenda";
 
 const Dashboard = () => {
-  
-  const {currentSelection} = useDashboard()
-  
-  compareTimePassedSinceLastLogin();
-  if (!localStorage.getItem("@clinicaToken")) {
-    return <Navigate to={"/"} />;
-  }
-  return (
-    <DashboardContainer>
-      <SideMenu />
-      <main>
-        <Header />
-        <InfoBoxes />
-        {currentSelection==="overview" ? (
-          <div className="overview">
-            <TablePacientes/>
-            <TableConsultasOverview/>
-          </div>
-        ):(
-          currentSelection==="pacientes" ? (
-            <>
-            <TablePacientes/>
-            </>
-          ):(
-            currentSelection==="consultas" ? (
-            <>
-            <TableConsultas/>
-            </>
-          ):
-            currentSelection==="agendas" ? (
-            <>
-            <TableConsultas/>
-            
-            </>
-          ):currentSelection==="medicos" && (
-            <>
-            <TableMedicos/>
-            </>
-          )
-          )
+    const { currentSelection } = useDashboard();
 
-        )}
-
-      </main>
-    </DashboardContainer>
-  );
+    compareTimePassedSinceLastLogin();
+    if (!localStorage.getItem("@clinicaToken")) {
+        return <Navigate to={"/"} />;
+    }
+    return (
+        <DashboardContainer>
+            <SideMenu />
+            <main>
+                <Header />
+                <InfoBoxes />
+                {currentSelection === "overview" ? (
+                    <div className='overview'>
+                        <TablePacientes />
+                        <TableConsultasOverview />
+                    </div>
+                ) : currentSelection === "pacientes" ? (
+                    <>
+                        <TablePacientes />
+                    </>
+                ) : currentSelection === "consultas" ? (
+                    <>
+                        <TableConsultas />
+                    </>
+                ) : currentSelection === "agenda" ? (
+                    <>
+                        <Agenda />
+                    </>
+                ) : (
+                    currentSelection === "medicos" && (
+                        <>
+                            <TableMedicos />
+                        </>
+                    )
+                )}
+            </main>
+        </DashboardContainer>
+    );
 };
 export default Dashboard;
