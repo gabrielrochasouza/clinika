@@ -19,7 +19,13 @@ export const DashboardContainer = styled.div`
         .overview{
             >div:nth-child(1){
                 flex: 1;
+                margin: 0 0 16px;
             }
+            >div:nth-child(2){
+                margin: 0 0 16px;
+            }
+            gap: 16px;
+            margin: 0 16px 0;
             display: flex;
             flex-wrap: wrap;
             @media (max-width: 1300px) {

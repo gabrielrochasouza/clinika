@@ -45,7 +45,7 @@ const GlobalStyle = createGlobalStyle`
         margin: 10px 0 0;
     }
     .undelineColored{
-        color: var(--tx-s);
+        color: var(--tx-t);
         font-size: 0.7rem;
         cursor: pointer;
     }
@@ -80,12 +80,14 @@ const GlobalStyle = createGlobalStyle`
     }
 
     ::-webkit-scrollbar-thumb{
-        background-color: var(--bg-p);
+        background-color: var(--tx-w);
+        border-radius: 8px;
+        border: 1px solid var(--tx-t);
     }
     ::-webkit-scrollbar{
-        width: 3px;
+        background-color: var(--bg-p);
+        width: 10px;
         height: 3px;
-        background-color: var(--bg-s);
     }
 
     @keyframes fadeUp {

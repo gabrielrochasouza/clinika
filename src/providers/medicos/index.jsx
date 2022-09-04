@@ -16,11 +16,26 @@ export const MedicoProvider = ({ children }) => {
       })
       .catch((err) => {
         console.log(err);
+        
         toast.error("Error no carregamento");
       });
   };
 
-  return <MedicoContext.Provider value={{medicos, getMedicos}}>{children}</MedicoContext.Provider>;
+  const createMedico = async(data)=>{
+    const token = localStorage.getItem("@clinicaToken") || "";
+    await api
+      .post("usuarios/medico/criar/", data, { headers: { authorization: `Bearer ${token}` } })
+      .then((res) => {
+        toast.success("Médico criado")
+      })
+      .catch((err) => {
+        const errors = err.response.data
+        let message = Object.values(errors).flat().join('; ')
+        toast.error(message.length ? message : "Error na criação");
+      });
+  }
+
+  return <MedicoContext.Provider value={{medicos, getMedicos, createMedico}}>{children}</MedicoContext.Provider>;
 };
 
 export const useMedico = () => useContext(MedicoContext);

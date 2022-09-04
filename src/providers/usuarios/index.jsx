@@ -26,24 +26,47 @@ export const UsuariosProvider = ({ children }) => {
     
   };
 
-
-
-  const getPacientes = async () => {
+  const getPacientes = async (query) => {
     const token = localStorage.getItem("@clinicaToken") || "";
+    if(!query){
+      await api
+        .get("pacientes/", {headers:{"authorization": `Bearer ${token}`}})
+        .then((res) => {
+          setPacientes(res.data);
+        })
+        .catch((err) =>{
+          console.log(err) 
+          toast.error("Error no carregamento")
+        });
+    }else{
+      await api
+        .get(`pacientes/${query}`, {headers:{"authorization": `Bearer ${token}`}})
+        .then((res) => {
+          setPacientes(res.data);
+        })
+        .catch((err) =>{
+          console.log(err) 
+          toast.error("Error no carregamento")
+        });
 
-    await api
-      .get("pacientes/", {headers:{"authorization": `Bearer ${token}`}})
-      .then((res) => {
-        setPacientes(res.data);
-      })
-      .catch((err) =>{
-        console.log(err) 
-        toast.error("Error no carregamento")
-      });
-    
-  
+    }
+
+
   };
 
+  const createPacientes = async (data)=>{
+    const token = localStorage.getItem("@clinicaToken") || "";
+    await api
+    .post("pacientes/",data, {headers:{"authorization": `Bearer ${token}`}})
+    .then((res) => {
+      toast.success("Paciente cadastrado com sucesso!")
+    })
+    .catch((err) =>{
+      const errors = err.response.data
+      let message = Object.values(errors).flat().join('; ')
+      toast.error(message.length ? message : "Error na criação!");
+    });
+  }
   
 
   return (
@@ -55,7 +78,8 @@ export const UsuariosProvider = ({ children }) => {
         totalOfPatientsThatHaventPayed,
         pacientes,
         getOverviewInfo,
-        getPacientes
+        getPacientes,
+        createPacientes
       }}
     >
       {children}

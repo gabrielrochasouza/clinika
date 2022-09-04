@@ -25,6 +25,7 @@ const TableMedicos = () => {
         }
         next={medicos?.next}
         previous={medicos?.previous}
+        count={medicos?.count}
         tableHeader={
           <>
             <span className="nome">Nome</span>

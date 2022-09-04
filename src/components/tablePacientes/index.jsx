@@ -15,6 +15,7 @@ const TablePacientes = () => {
     <>
       <Table
         headerTitle={"Pacientes"}
+        getFunction={getPacientes}
         headerBtn={
         <>
         
@@ -29,6 +30,7 @@ const TablePacientes = () => {
         }
         next={pacientes?.next}
         previous={pacientes?.previous}
+        count = {pacientes?.count}
         tableHeader={
           <>
             <span className="nome">Nome</span>

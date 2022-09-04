@@ -24,6 +24,7 @@ const TableConsultas = ({today}) => {
     }
         next={consultas?.next}
         previous={consultas?.previous}
+        count={consultas?.count}
         tableHeader={
           <>
             <span >Paciente</span>

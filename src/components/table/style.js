@@ -4,11 +4,48 @@ export const TableContainer = styled.div`
     display: flex;
     height: 95%;
     gap: 16px;
-    margin: 0 10px 16px;
+    margin: 0 16px 16px;
     background-color: var(--bg-s);
     border-radius: 16px;
-    padding: 20px;
+    padding: 20px 20px 40px;
     flex-direction: column;
+    animation: fadeUp 500ms;
+    @keyframes fadeUp {
+        from{
+            opacity: 0;
+            transform: translateY(40px);
+        }   
+        to{
+            opacity: 1;
+            transform: translateY(0px);
+        }
+    }
+
+    .table-footer{
+        .pagination{
+            display: flex;
+            gap:20px;
+            >li{
+                cursor: pointer;
+                border: 1px solid var(--tx-t);
+                width: 20px;
+                height: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                color: var(--tx-p);
+                font-size: 0.8rem;
+                transition: 1s all;
+                :hover{
+                    color: var(--tx-w);
+                    transform: scale(1.5);
+                    transition: 1s all;
+                    background-color: var(--tx-t);
+                }
+            }
+        }
+    }
     .table-header, .table-footer{
         display: flex;
         justify-content: space-between;
@@ -22,6 +59,7 @@ export const TableContainer = styled.div`
             border-radius: 50%;
             padding: 7px;
 
+            margin: 3px 1px 0;
             svg{
             }
         }
