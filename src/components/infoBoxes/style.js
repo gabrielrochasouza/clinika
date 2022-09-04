@@ -11,6 +11,7 @@ export const InfoBoxesContainer = styled.div`
     padding: 16px;
     flex: 1;
     transition: 500ms all;
+
     :hover {
       transition: 1s all;
       background-color: var(--bg-t);

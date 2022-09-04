@@ -15,7 +15,7 @@ export const InputContainer = styled.div`
     transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .eye-icon{
+  .eye-icon {
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -27,7 +27,7 @@ export const InputContainer = styled.div`
     top: 8px;
     cursor: pointer;
     color: var(--tx-p);
-    svg{
+    svg {
       color: var(--tx-p);
     }
   }
@@ -46,16 +46,54 @@ export const InputContainer = styled.div`
   }
 
   .input:focus,
-  input:valid {
+  input:valid,
+  select:valid {
     outline: none;
     border: 1.5px solid var(--bg-t);
   }
 
   .input:focus ~ label,
-  input:valid ~ label, input:not(:placeholder-shown) ~ label {
+  input:valid ~ label,
+  select:valid ~ label,
+  input[type="email"]:not(:placeholder-shown) ~ label,
+  input[type="password"]:not(:placeholder-shown) ~ label,
+  input[type="text"]:not(:placeholder-shown) ~ label {
     transform: translateY(-50%) scale(0.8);
     background-color: var(--bg-s);
     padding: 0 0.2em;
     color: var(--bg-t);
+  }
+
+  input[type="date"] ~ label {
+    background-color: var(--bg-s);
+  }
+
+  select {
+    text-transform: capitalize;
+    option {
+      text-transform: capitalize;
+      color: #000;
+    }
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--tx-p);
+    -webkit-box-shadow: 0 0 0px 1000px var(--bg-s) inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    background: url(https://cdn3.iconfinder.com/data/icons/linecons-free-vector-icons-pack/32/calendar-16.png)
+      center/80% no-repeat;
+    color: var(--tx-p);
+    background-color: var(--tx-w);
+    border-radius: 4px;
   }
 `;

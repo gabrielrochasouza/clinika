@@ -59,7 +59,6 @@ export const TableContainer = styled.div`
             border-radius: 50%;
             padding: 7px;
 
-            margin: 3px 1px 0;
             svg{
             }
         }
@@ -68,6 +67,10 @@ export const TableContainer = styled.div`
             display: flex;
             align-items: center;
             gap: 6px;
+            svg{
+                margin: 3px 1px 0;
+
+            }
         }
     }
 
