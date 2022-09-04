@@ -1,7 +1,6 @@
 import { NotFound } from "./style"
 import {TbError404} from 'react-icons/tb'
 import { useNavigate } from "react-router-dom"
-import Button from "../../components/submitButton"
 
 const NotFoundPage = ()=>{
     const navigate = useNavigate()

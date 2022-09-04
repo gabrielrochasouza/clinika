@@ -13,7 +13,7 @@ export const TableContainer = styled.div`
     @keyframes fadeUp {
         from{
             opacity: 0;
-            transform: translateY(40px);
+            transform: translateY(100px);
         }   
         to{
             opacity: 1;

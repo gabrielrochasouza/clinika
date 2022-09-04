@@ -82,7 +82,7 @@ const GlobalStyle = createGlobalStyle`
     ::-webkit-scrollbar-thumb{
         background-color: var(--tx-w);
         border-radius: 8px;
-        border: 1px solid var(--tx-t);
+        border: 2px solid var(--tx-t);
     }
     ::-webkit-scrollbar{
         background-color: var(--bg-p);
