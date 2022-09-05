@@ -7,10 +7,11 @@ const MedicoContext = createContext({});
 export const MedicoProvider = ({ children }) => {
   const [medicos, setMedicos] = useState({});
 
-  const getMedicos = async () => {
+  const getMedicos = async (query) => {
     const token = localStorage.getItem("@clinicaToken") || "";
+    let endpoint = query ? `usuarios/medico/listar/${query}` : "usuarios/medico/listar/"
     await api
-      .get("usuarios/medico/listar/", { headers: { authorization: `Bearer ${token}` } })
+      .get(endpoint, { headers: { authorization: `Bearer ${token}` } })
       .then((res) => {
         setMedicos(res.data);
       })

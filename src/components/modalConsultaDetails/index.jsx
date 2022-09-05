@@ -2,14 +2,16 @@ import Modal from "../modal";
 import { useModal } from "../../providers/modal";
 import { useForm } from "react-hook-form";
 import Input from "../input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useConvenio } from "../../providers/convenio";
 import Button from "../submitButton";
+import { useConsulta } from "../../providers/consultas";
 
-const ModalConsulta = ({ consultaInfo }) => {
+const ModalConsulta = ({ consultaId }) => {
   const { openModalConsultaDetails, openCloseModalConsultaDetails } =
     useModal();
-
+  const {patchConsulta, getConsultas, consultas} = useConsulta()
+  const consultaInfo = consultas.results.find(consulta=>consulta.id===consultaId)
   return (
     <>
       <Modal
@@ -26,10 +28,16 @@ const ModalConsulta = ({ consultaInfo }) => {
             <p>Dia da consulta: {consultaInfo.agenda.dia_da_consulta}</p>
             <p>Criado em: {consultaInfo.criado_em}</p>
             <div>
-              <p style={{ display: "inline-block", marginRight:'8px' }}>
+              <p 
+              style={{ display: "inline-block", marginRight:'8px' }}
+              >
                 Compareceu: {consultaInfo.compareceu ? "Sim" : "Não"}{" "}
               </p>
               <p
+                onClick={async()=>{
+                  await patchConsulta({compareceu:!consultaInfo.compareceu}, consultaInfo.id)
+                  await getConsultas()
+                }}
                 style={{ display: "inline-block" }}
                 className="undelineColored"
               >
@@ -38,10 +46,16 @@ const ModalConsulta = ({ consultaInfo }) => {
               </p>
             </div>
             <div>
-              <p style={{ display: "inline-block" , marginRight:'8px'}}>
+              <p 
+              style={{ display: "inline-block" , marginRight:'8px'}}
+              >
                 Confirmado: {consultaInfo.confirmado ? "Sim" : "Não"}
               </p>
               <p
+                onClick={async()=>{
+                  await patchConsulta({confirmado:!consultaInfo.confirmado}, consultaInfo.id)
+                  await getConsultas()
+                }}
                 style={{ display: "inline-block" }}
                 className="undelineColored"
               >
@@ -51,10 +65,16 @@ const ModalConsulta = ({ consultaInfo }) => {
             </div>
 
             <div>
-              <p style={{ display: "inline-block", marginRight:'8px' }}>
+              <p 
+              style={{ display: "inline-block", marginRight:'8px' }}
+              >
                 Pago: {consultaInfo.pago ? "Sim" : "Não"}
               </p>
               <p
+                onClick={async()=>{
+                  await patchConsulta({pago:!consultaInfo.pago}, consultaInfo.id)
+                  await getConsultas()
+                }}
                 style={{ display: "inline-block" }}
                 className="undelineColored"
               >
@@ -81,7 +101,14 @@ const ModalConsulta = ({ consultaInfo }) => {
             </p>
             <p>Telefone: {consultaInfo.medico.telefone}</p>
             <p className="undelineColored">Ver mais sobre o médico</p>
-            <Button text={"Cancelar Consulta"} />
+            <Button 
+            text={consultaInfo.consulta_cancelada ? "Descancelar Consulta" : "Cancelar Consulta"} 
+            onClick={async(e)=>{
+              e.preventDefault()
+              await patchConsulta({consulta_cancelada:!consultaInfo.consulta_cancelada}, consultaInfo.id)
+              await getConsultas()
+            }}
+            />
           </form>
         }
       />

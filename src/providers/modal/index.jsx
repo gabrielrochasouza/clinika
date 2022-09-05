@@ -18,6 +18,9 @@ export const ModalProvider = ({children})=>{
     const openCloseModalConsultaDetails = ()=>setOpenModalConsultaDetails(!openModalConsultaDetails)
 
 
+    const [openModalConsultaFilter, setOpenModalConsultaFilter] = useState(false)
+    const openCloseModalConsultaFilter = ()=> setOpenModalConsultaFilter(!openModalConsultaFilter)
+
     return(
         <ModalContext.Provider value={{
             openModalConvenio,
@@ -27,7 +30,9 @@ export const ModalProvider = ({children})=>{
             openModalCreateMedico,
             openCloseModalCreateMedico,
             openModalConsultaDetails,
-            openCloseModalConsultaDetails
+            openCloseModalConsultaDetails,
+            openModalConsultaFilter,
+            openCloseModalConsultaFilter
         }}>
             {children}
         </ModalContext.Provider>

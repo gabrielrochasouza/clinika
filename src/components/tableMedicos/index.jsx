@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import SearchInput from "../searchInput";
 import { useModal } from "../../providers/modal";
 import Loader from "../loader";
-
+import Empty from "../empty";
 
 const TableMedicos = () => {
     const {medicos, getMedicos} = useMedico()
@@ -19,12 +19,18 @@ const TableMedicos = () => {
         headerTitle={"Médicos"}
         headerBtn={
         <>
-        <SearchInput placeholder="Pesquisar médico"/>
+        <SearchInput 
+        placeholder="Pesquisar médico"
+        submitFunction={async(text)=>{
+          await getMedicos(`?nome=${text}`)
+        }}  
+        />
         <button onClick={openCloseModalCreateMedico}>Cadastrar Médico</button>
         </>
         }
         next={medicos?.next}
         previous={medicos?.previous}
+        getFunction={getMedicos}
         count={medicos?.count}
         tableHeader={
           <>
@@ -38,7 +44,7 @@ const TableMedicos = () => {
         }
         body={
           <>
-            {medicos?.results ? medicos.results.map(medico=>(
+            {medicos?.results ? medicos.results.length===0 ? <Empty/> : medicos.results.map(medico=>(
             <li key={medico.id}>
                 <span className="nome">{medico.nome}</span>
                 <span className="email">{medico.email}</span>

@@ -10,6 +10,12 @@ export const TableContainer = styled.div`
     padding: 20px 20px 40px;
     flex-direction: column;
     animation: fadeUp 500ms;
+
+    >svg{
+        width: 10px;
+    }
+
+
     @keyframes fadeUp {
         from{
             opacity: 0;

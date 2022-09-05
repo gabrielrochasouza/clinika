@@ -7,7 +7,6 @@ import InfoBoxes from "../../components/infoBoxes";
 import TablePacientes from "../../components/tablePacientes";
 import TableConsultas from "../../components/tableConsultas";
 import TableMedicos from "../../components/tableMedicos";
-import Loader from "../../components/loader";
 import { useDashboard } from "../../providers/dashboard";
 import TableConsultasOverview from "../../components/tableOverviewConsultas";
 

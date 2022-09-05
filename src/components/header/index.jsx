@@ -4,7 +4,6 @@ import { useLogin } from "../../providers/login";
 import { HeaderContainer } from "./style";
 import {FaUserAlt} from 'react-icons/fa'
 import {AiOutlineLock, AiOutlineLogout} from 'react-icons/ai'
-import {MdOutlineVisibility} from 'react-icons/md'
 import { useState } from "react";
 
 const Header = () => {
@@ -21,10 +20,6 @@ const Header = () => {
             <li>
                 <FaUserAlt/>
                 Editar perfil
-            </li>
-            <li>
-                <MdOutlineVisibility/>
-                Ver perfil
             </li>
             <li>
                 <AiOutlineLock/>

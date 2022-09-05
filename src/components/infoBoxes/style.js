@@ -20,7 +20,7 @@ export const InfoBoxesContainer = styled.div`
         
       }
     }
-    @media (max-width:1000px) {
+    @media (max-width:1150px) {
         flex-basis: 47%;
     }
     @media (max-width:565px) {

@@ -80,13 +80,13 @@ const GlobalStyle = createGlobalStyle`
     }
 
     ::-webkit-scrollbar-thumb{
-        background-color: var(--tx-w);
+        background-color: var(--tx-p);
         border-radius: 8px;
-        border: 2px solid var(--tx-t);
+        border: 1px solid var(--tx-t);
     }
     ::-webkit-scrollbar{
         background-color: var(--bg-p);
-        width: 10px;
+        width: 5px;
         height: 3px;
     }
 

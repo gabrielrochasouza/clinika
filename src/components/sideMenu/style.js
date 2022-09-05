@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const SideMenuContainer = styled.aside`
-  /* border-radius: 0 20px 20px 0; */
   background-color: var(--bg-t);
   padding: 0px 0px 0 10px;
   color: var(--tx-w);
@@ -90,7 +89,7 @@ export const SideMenuContainer = styled.aside`
     }
   }
   li:not(.menu-title, .close):hover {
-    background-color: ${(props) => props.open && "var(--bg-p)"};
+    background-color: ${(props) => props.open && "var(--bg-s)"};
     border-radius: 20px 0 0 20px;
     color: ${(props) => props.open && "var(--tx-t)"};
     svg, span {
