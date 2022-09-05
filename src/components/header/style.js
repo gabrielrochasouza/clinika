@@ -26,7 +26,7 @@ export const HeaderContainer = styled.header`
         padding:5px 10px;
         border-radius: 5px;
         font-size: 0.85rem;
-        border: 1px solid var(--tx-s);
+        border: 1px solid var(--grey-p);
         z-index: 2;
         width: 144px;
         animation: fadeUp 500ms;
@@ -46,8 +46,8 @@ export const HeaderContainer = styled.header`
         }
         ::after{
             z-index: 0;
-            border-top: 1px solid var(--tx-s);
-            border-left: 1px solid var(--tx-s);
+            border-top: 1px solid var(--grey-p);
+            border-left: 1px solid var(--grey-p);
             position: absolute;
             top: -6px;
             content: '';

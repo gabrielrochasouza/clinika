@@ -10,7 +10,7 @@ import { useUsuarios } from "../../providers/usuarios";
 
 const LoginPage = () => {
   const { login } = useLogin();
-  const {getData} = useUsuarios()
+  const {getData, getProfile} = useUsuarios()
   const { register, handleSubmit } = useForm();
   const [disabled, setDisabled] = useState(false);
   const [forgotPassword, setForgotPassword] = useState(false);
@@ -19,6 +19,7 @@ const LoginPage = () => {
   const loginSubmission = async (data) => {
     setDisabled(true);
     const response = await login(data);
+    await getProfile()
     setDisabled(false);
   };
 

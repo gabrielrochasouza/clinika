@@ -1,9 +1,10 @@
 import { ModalContainer } from "./style";
 import { AiOutlineClose } from "react-icons/ai";
 
-const Modal = ({ title, bodyContent, closeModal }) => {
+const Modal = ({ title, bodyContent, closeModal, ...rest }) => {
   return (
     <ModalContainer
+      {...rest}
       id="modal-bg"
       onClick={(e) =>
         e.target.id === "modal-bg" && closeModal()

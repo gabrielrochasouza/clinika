@@ -76,7 +76,7 @@ const GlobalStyle = createGlobalStyle`
         --border: ${(props)=>props.theme.border};
         --tx-f-p:'Open Sans', sans-serif;
         --tx-f-s:'Montserrat', sans-serif;
-
+        --grey-p:#575757
     }
 
     ::-webkit-scrollbar-thumb{
@@ -89,7 +89,19 @@ const GlobalStyle = createGlobalStyle`
         width: 5px;
         height: 3px;
     }
-
+    .header-description{
+        font-size: 10px;
+    }
+    .header-description__colored{
+        font-size: 10px;
+        color: var(--tx-t);
+        cursor: pointer;
+    }
+    .header-description__box{
+        font-size: 10px;
+        line-height: 10px;
+        text-align: end;
+    }
     @keyframes fadeUp {
         from{
             opacity: 0;

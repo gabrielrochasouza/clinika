@@ -70,13 +70,13 @@ export const SideMenuContainer = styled.aside`
       font-size: 0.7rem;
       left: 80px;
       border-radius: 5px;
-      border: 1px solid var(--tx-p);
+      border: 1px solid var(--grey-p);
       color: var(--tx-p);
       display: none;
       animation: fadeRight 500ms;
       ::after {
-        border-left:1px solid var(--tx-p);
-        border-bottom:1px solid var(--tx-p);
+        border-left:1px solid var(--grey-p);
+        border-bottom:1px solid var(--grey-p);
         position: absolute;
         content: "";
         width: 8px;
