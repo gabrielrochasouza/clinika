@@ -14,7 +14,9 @@ export const TableContainer = styled.div`
     >svg{
         width: 10px;
     }
-
+    .visibility-off{
+        visibility: hidden;
+    }
 
     @keyframes fadeUp {
         from{
@@ -31,6 +33,12 @@ export const TableContainer = styled.div`
         .pagination{
             display: flex;
             gap:20px;
+            .current-page{
+                color: var(--tx-w);
+                transform: scale(1.5);
+                transition: 1s all;
+                background-color: var(--tx-t);
+            }
             >li{
                 cursor: pointer;
                 border: 1px solid var(--tx-t);
@@ -81,6 +89,9 @@ export const TableContainer = styled.div`
     }
 
     .table-body{
+        display: flex;
+        flex-direction: column;
+        overflow-x: auto;
         li{
             padding: 8px 12px;
             display: flex;
@@ -94,6 +105,9 @@ export const TableContainer = styled.div`
                 text-overflow: ellipsis;
                 overflow: hidden;
                 padding: 0 6px 0 0;
+                @media (max-width:700px) {
+                    min-width: 150px;
+                }
             }
         }
         li:hover:not(.table-body-header) {

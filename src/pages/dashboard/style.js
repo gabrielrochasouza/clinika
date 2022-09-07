@@ -17,23 +17,34 @@ export const DashboardContainer = styled.div`
             flex-basis: 100%;
         }
         .overview{
+            flex: 1;
             >div:nth-child(1){
                 flex: 1;
-                margin: 0 0 16px;
+                margin: 0;
             }
             >div:nth-child(2){
-                margin: 0 0 16px;
+                margin: 0;
+                @media (min-width: 500px) {
+                    min-width: 350px;
+                }
+            }
+            >div{
+                height: 100%;
             }
             gap: 16px;
-            margin: 0 16px 0;
+            margin: 0 16px 16px;
             display: flex;
             flex-wrap: wrap;
-            @media (max-width: 1300px) {
+            @media (max-width: 1200px) {
                 flex-direction: column;
                 >div:nth-child(2){
                     flex: 1;
                 }
+                >div{
+                    width: 100%;
+                }
             }
+
 
         }
 

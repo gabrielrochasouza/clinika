@@ -20,7 +20,6 @@ const TableConsultasOverview = ({today}) => {
     <>
     
       <Table
-      style={{minWidth:'350px'}}
         headerTitle={"Consultas Hoje"}
         headerBtn={
             <>

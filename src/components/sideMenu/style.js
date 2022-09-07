@@ -9,6 +9,8 @@ export const SideMenuContainer = styled.aside`
   position: sticky;
   height: 100%;
   top: 0;
+  overflow: auto;
+
   @media (max-width: 870px) {
     position: fixed;
     top: 0;
@@ -37,6 +39,8 @@ export const SideMenuContainer = styled.aside`
     justify-content: space-between;
     height: 100%;
     min-height: 100vh;
+    top: 0;
+    position: fixed;
   }
   li {
     cursor: pointer;
