@@ -20,7 +20,20 @@ export const MedicoProvider = ({ children }) => {
       });
   };
 
-  return <MedicoContext.Provider value={{medicos, getMedicos}}>{children}</MedicoContext.Provider>;
+  const getMedicoByName = async (nome) => {
+    const token = localStorage.getItem("@clinicaToken") || "";
+    await api
+      .get(`usuarios/medico/listar/?nome=${nome}`, { headers: { authorization: `Bearer ${token}` } })
+      .then((res) => {
+        setMedicos(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Error no carregamento");
+      });
+  }
+
+  return <MedicoContext.Provider value={{medicos, getMedicos, getMedicoByName}}>{children}</MedicoContext.Provider>;
 };
 
 export const useMedico = () => useContext(MedicoContext);

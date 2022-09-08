@@ -1,24 +1,16 @@
 import styled from "styled-components";
 
-export const SectionContainer = styled.section`
-    margin: 0 16px;
-`;
-
 export const DivContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
+    width: 95%;
+    margin: 0px auto;
 `;
 
 export const DivContent = styled.div`
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
+    width: 100%;
+`;
 
-    input {
-        width: 90%;
-        max-width: 340px;
-    }
+export const DivBody = styled.div`
+    width: 100%;
+    position: relative;
 `;

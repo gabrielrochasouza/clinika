@@ -1,35 +1,35 @@
-import { SectionContainer, DivContainer, DivContent } from "./styles";
-import AgendaHorarios from "../agendaHorarios";
+import { DivContainer, DivContent, DivBody } from "./styles";
 
-import { useEffect, useState } from "react";
-import Calendar from "react-calendar";
+import AgendaTimes from "../agendaTimes";
+import AgendaFrames from "../agendaFrames";
+import AgendaEvents from "../agendaEvents";
+import ModalConsulta from "../modalConsultaDetails";
 
-import "react-calendar/dist/Calendar.css";
+import { useModal } from "../../providers/modal";
+import { useState } from "react";
 
 const Agenda = () => {
-    const [date, setDate] = useState(new Date());
-
-    useEffect(() => {
-        
-    }, [date]);
+    const { openModalConsultaDetails, openCloseModalConsultaDetails } =
+        useModal();
+    const [consultaInfo, setConsultaInfo] = useState({});
+    const openModal = (data) => {
+        setConsultaInfo(data);
+        openCloseModalConsultaDetails();
+    };
 
     return (
-        <SectionContainer>
-            <DivContainer>
-                <DivContent>
-                    <input />
-                    <select defaultValue={"inicial"}>
-                        <option value={"inicial"}>selecionar médico</option>
-                    </select>
-                </DivContent>
-                <Calendar
-                    locale='pt-BR'
-                    value={date}
-                    onChange={(value) => setDate(value)}
-                />
-            </DivContainer>
-            <AgendaHorarios date={date} />
-        </SectionContainer>
+        <DivContainer>
+            <DivContent>
+                <AgendaTimes />
+                <DivBody>
+                    <AgendaFrames />
+                    <AgendaEvents openModal={openModal} />
+                </DivBody>
+            </DivContent>
+            {/* {openModalConsultaDetails && (
+                <ModalConsulta consultaInfo={consultaInfo} />
+            )} */}
+        </DivContainer>
     );
 };
 

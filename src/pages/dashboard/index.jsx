@@ -10,7 +10,7 @@ import TableMedicos from "../../components/tableMedicos";
 import Loader from "../../components/loader";
 import { useDashboard } from "../../providers/dashboard";
 import TableConsultasOverview from "../../components/tableOverviewConsultas";
-import Agenda from "../../components/agenda";
+import AgendaPage from "../../components/agendaPage";
 
 const Dashboard = () => {
     const { currentSelection } = useDashboard();
@@ -40,7 +40,7 @@ const Dashboard = () => {
                     </>
                 ) : currentSelection === "agenda" ? (
                     <>
-                        <Agenda />
+                        <AgendaPage />
                     </>
                 ) : (
                     currentSelection === "medicos" && (
