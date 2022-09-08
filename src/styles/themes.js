@@ -11,13 +11,13 @@ export const lightThemeObject = {
 }
 
 export const darkThemeObject = {
-    bgP:'#262626',
+    bgP:'#2b2b2b',
     bgS:'#1e1e1e',
-    bgT:'#3f98f4',
-    bgTHover:'#1d63ab',
+    bgT:'#0fc1a3',
+    bgTHover:'#06a88c',
     txP:'#fff',
     txS:'#e1e1e1',
     txW:'#fff',
-    txT:'#3f98f4',
+    txT:'#0fc1a3',
     border:'rgba(255,255,255,0.1)'
 }

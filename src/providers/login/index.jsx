@@ -25,12 +25,35 @@ export const LoginProvider = ({children})=>{
         navigate('/')
     }
 
+    const changePassword = async(loginData,id,newPassword)=>{
+
+        await api.post('/login/',loginData).then(async(res)=>{
+            const accessToken = res.data.access
+            localStorage.setItem('@clinicaToken', accessToken)
+            localStorage.setItem('@ultimoLogin', new Date().valueOf() )
+
+            const token = localStorage.getItem("@clinicaToken") || "";
+    
+            await api.patch(`/usuarios/${id}/`, newPassword, 
+            {headers:{"authorization": `Bearer ${token}`}}
+            ).then(res=>{
+                toast.success("Senha Alterada com Sucesso!")
+            }).catch((err=>{
+                console.log(err)
+                toast.error('Não foi possível alterar senha')
+            }))
+
+        }).catch((err=>toast.error('Credenciais inválidas')))
+    }
+
+
     return(
         <LoginContext.Provider value={{
             login,
             logout,
             open,
-            openClose
+            openClose,
+            changePassword
         }}>
             {children}
         </LoginContext.Provider>

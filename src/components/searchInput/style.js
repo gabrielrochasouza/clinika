@@ -14,7 +14,7 @@ export const SearchInputContainer = styled.form`
         color: var(--tx-p);
         cursor: pointer;
     }
-    :hover input, input:focus{
+    :hover input, input:focus, input:not(:placeholder-shown){
         display: initial;
         width: 150px;
         transition: 1s all;

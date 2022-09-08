@@ -23,8 +23,24 @@ export const ConsultaProvider = ({ children }) => {
       });
   };
 
+  const patchConsulta = async(data, id)=>{
+    const token = localStorage.getItem("@clinicaToken") || "";
+    const endpoint = `consultas/${id}/`
+    await api
+      .patch(endpoint, data, {
+        headers: { authorization: `Bearer ${token}` },
+      })
+      .then(async(res) => {
+        toast.success("Consulta atualizada")
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Error no carregamento");
+      });
+  }
+
   return (
-    <ConsultaContext.Provider value={{consultas, getConsultas}}>{children}</ConsultaContext.Provider>
+    <ConsultaContext.Provider value={{consultas, getConsultas, patchConsulta}}>{children}</ConsultaContext.Provider>
   );
 };
 

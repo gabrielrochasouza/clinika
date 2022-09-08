@@ -18,6 +18,17 @@ export const ModalProvider = ({children})=>{
     const openCloseModalConsultaDetails = ()=>setOpenModalConsultaDetails(!openModalConsultaDetails)
 
 
+    const [openModalConsultaFilter, setOpenModalConsultaFilter] = useState(false)
+    const openCloseModalConsultaFilter = ()=> setOpenModalConsultaFilter(!openModalConsultaFilter)
+
+
+    const [openModalProfileEdit, setOpenModalProfileEdit] = useState(false)
+    const openCloseModalProfileEdit = ()=> setOpenModalProfileEdit(!openModalProfileEdit)
+
+
+    const [openModalChangePassword, setOpenModalChangePassword] = useState(false)
+    const openCloseModalChangePassword = ()=> setOpenModalChangePassword(!openModalChangePassword)
+
     return(
         <ModalContext.Provider value={{
             openModalConvenio,
@@ -27,7 +38,13 @@ export const ModalProvider = ({children})=>{
             openModalCreateMedico,
             openCloseModalCreateMedico,
             openModalConsultaDetails,
-            openCloseModalConsultaDetails
+            openCloseModalConsultaDetails,
+            openModalConsultaFilter,
+            openCloseModalConsultaFilter,
+            openModalProfileEdit,
+            openCloseModalProfileEdit,
+            openModalChangePassword,
+            openCloseModalChangePassword
         }}>
             {children}
         </ModalContext.Provider>

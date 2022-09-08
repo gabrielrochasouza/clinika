@@ -45,7 +45,7 @@ const GlobalStyle = createGlobalStyle`
         margin: 10px 0 0;
     }
     .undelineColored{
-        color: var(--tx-s);
+        color: var(--tx-t);
         font-size: 0.7rem;
         cursor: pointer;
     }
@@ -76,18 +76,32 @@ const GlobalStyle = createGlobalStyle`
         --border: ${(props)=>props.theme.border};
         --tx-f-p:'Open Sans', sans-serif;
         --tx-f-s:'Montserrat', sans-serif;
-
+        --grey-p:#575757
     }
 
     ::-webkit-scrollbar-thumb{
-        background-color: var(--bg-p);
+        background-color: var(--tx-p);
+        border-radius: 8px;
+        border: 1px solid var(--tx-t);
     }
     ::-webkit-scrollbar{
-        width: 3px;
+        background-color: var(--bg-p);
+        width: 5px;
         height: 3px;
-        background-color: var(--bg-s);
     }
-
+    .header-description{
+        font-size: 10px;
+    }
+    .header-description__colored{
+        font-size: 10px;
+        color: var(--tx-t);
+        cursor: pointer;
+    }
+    .header-description__box{
+        font-size: 10px;
+        line-height: 10px;
+        text-align: end;
+    }
     @keyframes fadeUp {
         from{
             opacity: 0;

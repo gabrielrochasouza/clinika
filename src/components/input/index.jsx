@@ -1,26 +1,53 @@
 import { InputContainer } from "./style";
-import {MdVisibilityOff, MdVisibility} from 'react-icons/md'
-import {useState} from 'react'
+import { MdVisibilityOff, MdVisibility } from "react-icons/md";
+import { useState } from "react";
 
-const Input = ({ inputName, name, isPassword=false, register,type='text', style, mask,...rest}) => {
-  const [visible, setVisible] = useState(false)
+const Input = ({
+  inputName,
+  name,
+  isPassword = false,
+  register,
+  isSelect = false,
+  options,
+  type = "text",
+  style,
+  mask,
+  ...rest
+}) => {
+  const [visible, setVisible] = useState(false);
 
-    return (
+  return (
     <>
-      {isPassword ? (
+      {isSelect ? (
+        <InputContainer style={style}>
+          <select
+            {...register(name)}
+            required={true}
+            type={visible ? "text" : "password"}
+            className="input"
+            placeholder={" "}
+            name={name}
+            {...rest}
+          >
+            {options}
+          </select>
+          <label className="user-label">{inputName}</label>
+
+        </InputContainer>
+      ):isPassword ? (
         <InputContainer style={style}>
           <input
             {...register(name)}
             required={true}
-            type={visible ? 'text' : 'password'}
+            type={visible ? "text" : "password"}
             className="input"
-            placeholder={' '}
+            placeholder={" "}
             name={name}
             {...rest}
           />
           <label className="user-label">{inputName}</label>
-          <div className="eye-icon" onClick={()=>setVisible(!visible)}>
-            {visible ? <MdVisibility/> : <MdVisibilityOff/>}
+          <div className="eye-icon" onClick={() => setVisible(!visible)}>
+            {visible ? <MdVisibility /> : <MdVisibilityOff />}
           </div>
         </InputContainer>
       ) : (
@@ -31,9 +58,11 @@ const Input = ({ inputName, name, isPassword=false, register,type='text', style,
             type={type}
             className="input"
             name={name}
-            placeholder={' '}
+            placeholder={" "}
             {...rest}
-            onInput={(e)=> {if(mask) e.target.value = mask(e.target.value)}}
+            onInput={(e) => {
+              if (mask) e.target.value = mask(e.target.value);
+            }}
           />
           <label className="user-label">{inputName}</label>
         </InputContainer>

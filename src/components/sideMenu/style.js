@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const SideMenuContainer = styled.aside`
-  /* border-radius: 0 20px 20px 0; */
   background-color: var(--bg-t);
   padding: 0px 0px 0 10px;
   color: var(--tx-w);
@@ -10,6 +9,8 @@ export const SideMenuContainer = styled.aside`
   position: sticky;
   height: 100%;
   top: 0;
+  overflow: auto;
+
   @media (max-width: 870px) {
     position: fixed;
     top: 0;
@@ -38,9 +39,12 @@ export const SideMenuContainer = styled.aside`
     justify-content: space-between;
     height: 100%;
     min-height: 100vh;
+    top: 0;
+    position: ${(props) => (props.open ? "initial" : "fixed")};
   }
   li {
     cursor: pointer;
+    animation-delay: 1000ms;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -71,13 +75,13 @@ export const SideMenuContainer = styled.aside`
       font-size: 0.7rem;
       left: 80px;
       border-radius: 5px;
-      border: 1px solid var(--tx-p);
+      border: 1px solid var(--grey-p);
       color: var(--tx-p);
       display: none;
       animation: fadeRight 500ms;
       ::after {
-        border-left:1px solid var(--tx-p);
-        border-bottom:1px solid var(--tx-p);
+        border-left:1px solid var(--grey-p);
+        border-bottom:1px solid var(--grey-p);
         position: absolute;
         content: "";
         width: 8px;
@@ -90,7 +94,7 @@ export const SideMenuContainer = styled.aside`
     }
   }
   li:not(.menu-title, .close):hover {
-    background-color: ${(props) => props.open && "var(--bg-p)"};
+    background-color: ${(props) => props.open && "var(--bg-s)"};
     border-radius: 20px 0 0 20px;
     color: ${(props) => props.open && "var(--tx-t)"};
     svg, span {

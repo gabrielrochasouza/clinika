@@ -7,6 +7,7 @@ import ModalConsulta from "../modalConsultaDetails";
 import { useModal } from "../../providers/modal";
 import { useState } from "react";
 import { timePassed } from "../../utils";
+import Empty from "../empty";
 
 const TableConsultasOverview = ({today}) => {
     const {consultas, getConsultas} = useConsulta()
@@ -19,7 +20,6 @@ const TableConsultasOverview = ({today}) => {
     <>
     
       <Table
-      style={{minWidth:'350px'}}
         headerTitle={"Consultas Hoje"}
         headerBtn={
             <>
@@ -28,6 +28,7 @@ const TableConsultasOverview = ({today}) => {
     }
         next={consultas?.next}
         previous={consultas?.previous}
+        count={consultas?.count}
         tableHeader={
           <>
             <span >Paciente</span>
@@ -37,7 +38,7 @@ const TableConsultasOverview = ({today}) => {
         }
         body={
           <>
-            {consultas.results ? consultas.results.map(consulta=>(
+            {consultas.results ? consultas.results.length===0 ? <Empty/> : consultas.results.map(consulta=>(
             <li key={consulta.id} onClick={()=>{
                 openCloseModalConsultaDetails()
                 setConsultaInfo(consulta)

@@ -7,10 +7,11 @@ import InfoBoxes from "../../components/infoBoxes";
 import TablePacientes from "../../components/tablePacientes";
 import TableConsultas from "../../components/tableConsultas";
 import TableMedicos from "../../components/tableMedicos";
-import Loader from "../../components/loader";
 import { useDashboard } from "../../providers/dashboard";
 import TableConsultasOverview from "../../components/tableOverviewConsultas";
 import AgendaPage from "../../components/agendaPage";
+import TableConvenios from "../../components/tableConvenio";
+import TableAtendentes from "../../components/tableAtendente";
 
 const Dashboard = () => {
     const { currentSelection } = useDashboard();
@@ -38,9 +39,17 @@ const Dashboard = () => {
                     <>
                         <TableConsultas />
                     </>
-                ) : currentSelection === "agenda" ? (
+                ) : currentSelection === "agendas" ? (
                     <>
                         <AgendaPage />
+                    </>
+                ) : currentSelection === "convenio" ? (
+                    <>
+                        <TableConvenios />
+                    </>
+                ) : currentSelection === "atendentes" ? (
+                    <>
+                        <TableAtendentes />
                     </>
                 ) : (
                     currentSelection === "medicos" && (
