@@ -125,6 +125,75 @@ export const UsuariosProvider = ({ children }) => {
   };
 
 
+  const [atendentes, setAtendentes ]= useState({})
+
+  const getAtendentes = async()=>{
+    const token = localStorage.getItem("@clinicaToken") || "";
+    await api
+    .get(`/usuarios/atendentes/`,{
+      headers: { authorization: `Bearer ${token}` },
+    })
+    .then((res) => {
+      setAtendentes(res.data)
+    })
+    .catch((err) => {
+      const errors = err.response.data;
+      let message = Object.values(errors).flat().join("; ");
+      toast.error(
+        message.length ? message : "Não foi possível atualizar."
+      );
+    });
+  }
+
+
+  const createAtendente = async(data)=>{
+    const token = localStorage.getItem("@clinicaToken") || "";
+    await api
+    .post(`/usuarios/`,data,{
+      headers: { authorization: `Bearer ${token}` },
+    })
+    .then((res) => {
+      toast.success("Atendente criado com sucesso!")
+    })
+    .catch((err) => {
+      const errors = err.response.data;
+      let message = Object.values(errors).flat().join("; ");
+      toast.error(
+        message.length ? message : "Não foi possível atualizar."
+      );
+    });
+  }
+
+
+  const deactivateAccount = async(id, data, loginData)=>{
+    const token = localStorage.getItem("@clinicaToken") || "";
+
+    await api
+      .post("/login/", loginData)
+      .then(async (res) => {
+        const accessToken = res.data.access;
+        localStorage.setItem("@clinicaToken", accessToken);
+        localStorage.setItem("@ultimoLogin", new Date().valueOf());
+        const token = localStorage.getItem("@clinicaToken") || "";
+
+        await api
+          .patch(`/usuarios/ativar-desativar/${id}/`, data, {
+            headers: { authorization: `Bearer ${token}` },
+          })
+          .then((res) => {
+            toast.success("Alteração bem sucedida!");
+          })
+          .catch((err) => {
+            const errors = err.response.data;
+            let message = Object.values(errors).flat().join("; ");
+            toast.error(
+              message.length ? message : "Não foi possível atualizar."
+            );
+          });
+      })
+      .catch((err) => toast.error("Credenciais inválidas"));
+  }
+
   
   return (
     <UsuariosContext.Provider
@@ -140,6 +209,10 @@ export const UsuariosProvider = ({ children }) => {
         getProfile,
         userData,
         updateProfile,
+        getAtendentes,
+        atendentes,
+        createAtendente,
+        deactivateAccount
       }}
     >
       {children}

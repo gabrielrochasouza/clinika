@@ -9,13 +9,14 @@ import { useConvenio } from "../../providers/convenio";
 
 const ModalConvenio = ()=>{
     const {openModalConvenio, openCloseModalConvenio} = useModal()
-    const {createConvenio} = useConvenio()
+    const {createConvenio, getConvenio} = useConvenio()
     const { register, handleSubmit } = useForm()
     const [disable, setDisable] = useState(false)
 
     const submitCreateConvenio = async (data)=>{
         setDisable(!disable)
         await createConvenio(data)
+        await getConvenio()
         setDisable(false)
         openCloseModalConvenio()
     }

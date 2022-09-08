@@ -38,12 +38,49 @@ export const ConvenioProvider = ({ children }) => {
       });
   };
 
+
+  const updateConvenio = async(data, id)=>{
+    const token = localStorage.getItem("@clinicaToken") || "";
+    await api
+    .patch(`convenios/${id}/`, data,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => toast.success("Convênio Atualizado"))
+    .catch((err) => {
+      const errors = err.response.data
+      let message = Object.values(errors).flat().join('; ') || ''
+      toast.error(message.length ? message : "Error na criação");
+    });
+  }
+
+
+  const deleteConvenio = async(id)=>{
+    const token = localStorage.getItem("@clinicaToken") || "";
+    await api
+    .delete(`convenios/${id}/`,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => toast.success("Convênio Excluido"))
+    .catch((err) => {
+      const errors = err.response.data
+      let message = Object.values(errors).flat().join('; ') || ''
+      toast.error(message.length ? message : "Error na criação");
+    });
+  }
+
+
   return (
     <ConvenioContext.Provider
       value={{
         createConvenio,
         getConvenio,
-        convenios
+        convenios,
+        updateConvenio,
+        deleteConvenio
       }}
     >
       {children}

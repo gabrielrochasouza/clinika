@@ -40,10 +40,11 @@ export const SideMenuContainer = styled.aside`
     height: 100%;
     min-height: 100vh;
     top: 0;
-    position: fixed;
+    position: ${(props) => (props.open ? "initial" : "fixed")};
   }
   li {
     cursor: pointer;
+    animation-delay: 1000ms;
     display: flex;
     align-items: center;
     gap: 10px;

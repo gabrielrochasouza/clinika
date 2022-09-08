@@ -51,6 +51,7 @@ export const TableContainer = styled.div`
                 color: var(--tx-p);
                 font-size: 0.8rem;
                 transition: 1s all;
+                
                 :hover{
                     color: var(--tx-w);
                     transform: scale(1.5);
@@ -108,6 +109,14 @@ export const TableContainer = styled.div`
                 @media (max-width:700px) {
                     min-width: 150px;
                 }
+            }
+            span >svg{
+                color: var(--tx-t);
+                border-radius: 50%;
+                width: 15px;
+                height: 15px;
+                padding: 1px;
+
             }
         }
         li:hover:not(.table-body-header) {

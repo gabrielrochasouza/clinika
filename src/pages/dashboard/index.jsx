@@ -9,6 +9,8 @@ import TableConsultas from "../../components/tableConsultas";
 import TableMedicos from "../../components/tableMedicos";
 import { useDashboard } from "../../providers/dashboard";
 import TableConsultasOverview from "../../components/tableOverviewConsultas";
+import TableConvenios from "../../components/tableConvenio";
+import TableAtendentes from "../../components/tableAtendente";
 
 const Dashboard = () => {
   
@@ -43,7 +45,14 @@ const Dashboard = () => {
             currentSelection==="agendas" ? (
             <>
             <TableConsultas/>
-            
+            </>
+          ):currentSelection==="convenio" ? (
+            <>
+            <TableConvenios/>
+            </>
+          ):currentSelection==="atendentes" ? (
+            <>
+            <TableAtendentes/>
             </>
           ):currentSelection==="medicos" && (
             <>
