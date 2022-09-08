@@ -18,8 +18,7 @@ const LoginPage = () => {
 
   const loginSubmission = async (data) => {
     setDisabled(true);
-    const response = await login(data);
-    await getProfile()
+    const response = await login(data, getProfile);
     setDisabled(false);
   };
 
