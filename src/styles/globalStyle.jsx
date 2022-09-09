@@ -1,4 +1,4 @@
-import { createGlobalStyle } from'styled-components'
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
     *{
@@ -65,15 +65,18 @@ const GlobalStyle = createGlobalStyle`
         text-decoration: none;
     }
     :root{
-        --bg-p:${(props)=>props.theme.bgP};
-        --bg-s: ${(props)=>props.theme.bgS};
-        --bg-t: ${(props)=>props.theme.bgT};
-        --bg-t-hover: ${(props)=>props.theme.bgTHover};
-        --tx-p: ${(props)=>props.theme.txP};
-        --tx-s: ${(props)=>props.theme.txS};
-        --tx-w: ${(props)=>props.theme.txW};
-        --tx-t: ${(props)=>props.theme.txT};
-        --border: ${(props)=>props.theme.border};
+        --bg-p:${(props) => props.theme.bgP};
+        --bg-s: ${(props) => props.theme.bgS};
+        --bg-t: ${(props) => props.theme.bgT};
+        --bg-t-i: ${(props) => props.theme.bgTI};
+        --bg-t-hover: ${(props) => props.theme.bgTHover};
+        --tx-p: ${(props) => props.theme.txP};
+        --tx-p-i: ${(props) => props.theme.txPI};
+        --tx-s: ${(props) => props.theme.txS};
+        --tx-w: ${(props) => props.theme.txW};
+        --tx-t: ${(props) => props.theme.txT};
+        --tx-t-i: ${(props) => props.theme.txTI};
+        --border: ${(props) => props.theme.border};
         --tx-f-p:'Open Sans', sans-serif;
         --tx-f-s:'Montserrat', sans-serif;
         --grey-p:#575757
@@ -122,7 +125,6 @@ const GlobalStyle = createGlobalStyle`
             transform: translateX(0px);
         }
     }
-`
+`;
 
-
-export default GlobalStyle
+export default GlobalStyle;

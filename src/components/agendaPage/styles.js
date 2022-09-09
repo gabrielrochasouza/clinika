@@ -2,10 +2,22 @@ import styled from "styled-components";
 
 export const DivContainer = styled.div`
     background-color: var(--bg-s);
-    margin: 16px;
-    padding: 12px 0px;
+    margin: 0 16px 16px;
+    padding: 20px 20px 40px;
     border-radius: 16px;
-    height: 100%;
+    height: 95%;
+    
+
+    @keyframes fadeUp {
+        from{
+            opacity: 0;
+            transform: translateY(100px);
+        }   
+        to{
+            opacity: 1;
+            transform: translateY(0px);
+        }
+    }
 `;
 
 export const DivContent = styled.div`
@@ -131,6 +143,11 @@ export const DivContent = styled.div`
 
         :hover {
             background: var(--bg-t-hover);
+            color: var(--tx-p-i);
+
+            span {
+                color: var(--tx-p-i);
+            }
         }
     }
 
@@ -178,6 +195,7 @@ export const DivContent = styled.div`
     }
     .react-calendar__tile:disabled {
         background-color: #f0f0f0;
+        cursor: default;
     }
     .react-calendar__tile--now {
         background: var(--tx-s);
@@ -190,6 +208,7 @@ export const DivContent = styled.div`
     .react-calendar__tile:enabled:hover,
     .react-calendar__tile:enabled:focus {
         background: var(--bg-t-hover);
+        color: var(--tx-p-i);
     }
     .react-calendar__tile--hasActive:enabled:hover,
     .react-calendar__tile--hasActive:enabled:focus {
@@ -200,51 +219,16 @@ export const DivContent = styled.div`
     }
     .react-calendar__tile--active {
         background: var(--bg-t);
-        color: var(--tx-p);
+        color: var(--tx-p-i);
     }
     .react-calendar__tile--active:enabled:hover,
     .react-calendar__tile--active:enabled:focus {
         background: var(--bg-t);
-        color: var(--bg-p);
+        color: var(--tx-p-i);
     }
     .react-calendar--selectRange .react-calendar__tile--hover {
         background-color: #e6e6e6;
     }
 `;
 
-export const StyledUl = styled.ul`
-    display: flex;
-    flex-direction: column;
-    background-color: var(--bg-p);
-    border: 2px solid var(--border);
-    width: 100%;
-    height: 100%;
-    max-height: 177px;
-    padding: 6px;
-    border-radius: 8px;
-    overflow-y: scroll;
-`;
 
-export const StyledLi = styled.li`
-    color: var(--tx-p);
-    font-family: var(--tx-f-p);
-    border: 1px solid var(--border);
-    background-color: var(--bg-s);
-    padding: 0px 6px;
-    border-radius: 4px;
-    background-color: ${(props) => props.selected && "var(--bg-t)"};
-    cursor: pointer;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-
-    + li {
-        margin-top: 2px;
-    }
-
-    :hover {
-        background-color: ${(props) =>
-            props.selected ? "var(--bg-t)" : "var(--bg-t-hover)"};
-    }
-`;

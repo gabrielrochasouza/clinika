@@ -40,3 +40,13 @@ export const numberMask = (value) => {
   return value
     .replace(/\D/g, '') 
 }
+
+export const horarioMask = (value) => {
+  return value
+    .replace(/\D/g, '')
+    .replace(/(\d{1})/, (x,y,z) => Number(y) > 2 ? '' : y )
+    .replace(/(\d{1})(\d{1})/, (x,y,z) => Number(y) === 1 ? x : Number(z) > 4 ? y + '' : x)
+    .replace(/(\d{2})(\d)/, '$1:$2')
+    .replace(/(:\d{1})/, (x,y,z) => Number(y) > 5 ? '' : y)
+    .replace(/(:\d{2})\d+?$/, '$1')
+}

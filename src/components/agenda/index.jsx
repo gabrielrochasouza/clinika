@@ -1,35 +1,71 @@
-import { DivContainer, DivContent, DivBody } from "./styles";
+import { DivContainer, DivContent, DivBody, Div } from "./styles";
+
+import { useState, useEffect, useRef } from "react";
+import toast from "react-hot-toast";
 
 import AgendaTimes from "../agendaTimes";
 import AgendaFrames from "../agendaFrames";
 import AgendaEvents from "../agendaEvents";
-import ModalConsulta from "../modalConsultaDetails";
-
+import { useAgenda } from "../../providers/agenda";
 import { useModal } from "../../providers/modal";
-import { useState } from "react";
+import ModalConsulta from "../modalConsultaDetails";
+import ModalCriarHorario from "../modalCriarHorario";
+import ModalCreateConsulta from "../modalCreateConsulta";
 
 const Agenda = () => {
-    const { openModalConsultaDetails, openCloseModalConsultaDetails } =
-        useModal();
+    const {
+        openModalConsultaDetails,
+        openCloseModalConsultaDetails,
+        openModalCreateHorario,
+        openCloseModalCreateHorario,
+        openModalCreateConsulta,
+        openCloseModalCreateConsulta,
+    } = useModal();
     const [consultaInfo, setConsultaInfo] = useState({});
-    const openModal = (data) => {
+    const { currentMedicoId } = useAgenda();
+    const nowRef = useRef(null);
+
+    useEffect(() => {
+        nowRef.current?.scrollIntoView({ block: "center" });
+    }, []);
+
+    const openModalConsulta = (data) => {
         setConsultaInfo(data);
-        openCloseModalConsultaDetails();
+        if (data.horario_marcado) {
+            openCloseModalConsultaDetails();
+        } else {
+            openCloseModalCreateConsulta();
+        }
+    };
+
+    const openModalCriarHorario = () => {
+        if (!currentMedicoId) return toast.error("Selecione um medico");
+        openCloseModalCreateHorario();
     };
 
     return (
-        <DivContainer>
-            <DivContent>
-                <AgendaTimes />
-                <DivBody>
-                    <AgendaFrames />
-                    <AgendaEvents openModal={openModal} />
-                </DivBody>
-            </DivContent>
-            {/* {openModalConsultaDetails && (
+        <Div>
+            <button onClick={openModalCriarHorario}>
+                Criar novo horário vago
+            </button>
+            <DivContainer>
+                <DivContent>
+                    <AgendaTimes />
+                    <DivBody>
+                        <AgendaFrames />
+                        <AgendaEvents
+                            openModal={openModalConsulta}
+                            nowRef={nowRef}
+                        />
+                    </DivBody>
+                </DivContent>
+            </DivContainer>
+            {openModalCreateConsulta && <ModalCreateConsulta />}
+            {openModalConsultaDetails && (
                 <ModalConsulta consultaInfo={consultaInfo} />
-            )} */}
-        </DivContainer>
+            )}
+            {openModalCreateHorario && <ModalCriarHorario />}
+        </Div>
     );
 };
 

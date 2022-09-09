@@ -5,7 +5,7 @@ import { FaCaretRight } from "react-icons/fa";
 
 import { getPorcentXRelationY, tranforTimeInMinutes } from "../../utils";
 
-const AgendaEvents = ({ openModal }) => {
+const AgendaEvents = ({ openModal, nowRef }) => {
     const { horarios, date } = useAgenda();
     const [now, setNow] = useState(
         new Date(Date.now()).toLocaleString().replaceAll("/", "-").split(" ")
@@ -18,13 +18,14 @@ const AgendaEvents = ({ openModal }) => {
                 .replaceAll("/", "-")
                 .split(" ")
         );
-    }, 30000);
+    }, 10000);
 
     return (
         <DivContainer>
             <div>
                 {horarios.map((event) => (
                     <DivContent
+                        key={event.id}
                         ini={getPorcentXRelationY(
                             tranforTimeInMinutes(event.horario_inicial),
                             1440
@@ -43,15 +44,16 @@ const AgendaEvents = ({ openModal }) => {
                     </DivContent>
                 ))}
             </div>
-            {date.toLocaleDateString().replaceAll("/", "-") === now[0] && (
-                <DivNow
-                    ini={getPorcentXRelationY(
-                        tranforTimeInMinutes(now[1]),
-                        1440
-                    )}>
-                    <FaCaretRight />
-                </DivNow>
-            )}
+            <DivNow
+                inv={
+                    date.toLocaleDateString().replaceAll("/", "-") === now[0]
+                        ? false
+                        : true
+                }
+                ref={nowRef}
+                ini={getPorcentXRelationY(tranforTimeInMinutes(now[1]), 1440)}>
+                <FaCaretRight />
+            </DivNow>
         </DivContainer>
     );
 };

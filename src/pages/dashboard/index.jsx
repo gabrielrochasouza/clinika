@@ -39,7 +39,7 @@ const Dashboard = () => {
                     <>
                         <TableConsultas />
                     </>
-                ) : currentSelection === "agendas" ? (
+                ) : currentSelection === "agenda" ? (
                     <>
                         <AgendaPage />
                     </>
