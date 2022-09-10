@@ -7,11 +7,11 @@ const ListMedicos = ({ list, currentMedicoId, setCurrentMedicoId }) => {
 
     useEffect(() => {
         medRef.current?.scrollIntoView({ block: "center" });
-    }, []);
+    }, [list]);
 
     return (
         <StyledUl>
-            {list?.map((value) => (
+            {list.map((value) => (
                 <StyledLi
                     key={value.id}
                     id={value.id}

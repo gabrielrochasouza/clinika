@@ -6,14 +6,13 @@ export const DivContainer = styled.div`
     padding: 20px 20px 40px;
     border-radius: 16px;
     height: 95%;
-    
 
     @keyframes fadeUp {
-        from{
+        from {
             opacity: 0;
             transform: translateY(100px);
-        }   
-        to{
+        }
+        to {
             opacity: 1;
             transform: translateY(0px);
         }
@@ -26,7 +25,6 @@ export const DivContent = styled.div`
     align-items: center;
     gap: 16px;
     width: 100%;
-    height: 304px;
 
     .div_medicos {
         display: flex;
@@ -230,5 +228,3 @@ export const DivContent = styled.div`
         background-color: #e6e6e6;
     }
 `;
-
-

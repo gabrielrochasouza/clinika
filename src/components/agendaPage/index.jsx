@@ -1,5 +1,4 @@
 import { DivContainer, DivContent } from "./styles";
-import api from "../../services";
 import { useMedico } from "../../providers/medicos";
 import { useAgenda } from "../../providers/agenda";
 import Agenda from "../agenda";
@@ -8,22 +7,20 @@ import { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import { FiX } from "react-icons/fi";
 import ListMedicos from "../ListMedicos";
+import Loader from "../loader";
 
 const AgendaPage = () => {
     const [inputValue, setInputValue] = useState("");
-    const { currentMedicoId, setCurrentMedicoId, date, setDate, setHorarios } =
-        useAgenda();
-    const { medicos, getMedicos, getMedicoByName } = useMedico();
-    
+    const { currentMedicoId, setCurrentMedicoId, date, setDate } = useAgenda();
+    const { allMedicos, getAllMedicos } = useMedico();
+
     useEffect(() => {
-        getMedicoByName(inputValue);
+        getAllMedicos(`?nome=${inputValue}`);
     }, [inputValue]);
 
     useEffect(() => {
-        getMedicos();
+        getAllMedicos();
     }, []);
-
-    
 
     return (
         <DivContainer>
@@ -42,11 +39,15 @@ const AgendaPage = () => {
                             {inputValue && <FiX />}
                         </div>
                     </div>
-                    <ListMedicos
-                        list={medicos.results}
-                        currentMedicoId={currentMedicoId}
-                        setCurrentMedicoId={setCurrentMedicoId}
-                    />
+                    {allMedicos.length !== 0 ? (
+                        <ListMedicos
+                            list={allMedicos}
+                            currentMedicoId={currentMedicoId}
+                            setCurrentMedicoId={setCurrentMedicoId}
+                        />
+                    ) : (
+                        <Loader />
+                    )}
                 </div>
                 <Calendar
                     locale='pt-BR'

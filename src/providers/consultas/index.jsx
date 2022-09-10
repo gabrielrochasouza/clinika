@@ -25,7 +25,7 @@ export const ConsultaProvider = ({ children }) => {
 
     const createConsulta = async (data, medicoId, pacienteId, agendaId) => {
         const token = localStorage.getItem("@clinicaToken") || "";
-        const endpoint = `consultas/${medicoId}/paciente/${pacienteId}/agenda/${agendaId}/`;
+        const endpoint = `consultas/medico/${medicoId}/paciente/${pacienteId}/agenda/${agendaId}/`;
         await api
             .post(endpoint, data, {
                 headers: { authorization: `Bearer ${token}` },

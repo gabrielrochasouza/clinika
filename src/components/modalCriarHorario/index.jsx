@@ -16,13 +16,7 @@ const ModalCriarHorario = () => {
 
     const onSubmit = async (data) => {
         setDisable(true);
-        if (data.horario_inicial.length < 5) {
-            return toast.error("Horário inicial incorreta");
-        }
-        if (data.horario_final.length < 5) {
-            return toast.error("Horário final incorreta");
-        }
-
+        
         data.dia_da_consulta = data.dia_da_consulta
             .split("-")
             .reverse()

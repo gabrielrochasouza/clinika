@@ -9,6 +9,7 @@ export const AgendaProvider = ({ children }) => {
     const [currentMedicoId, setCurrentMedicoId] = useState("");
     const [date, setDate] = useState(new Date());
     const [horarios, setHorarios] = useState([]);
+    const [agendaId, setAgendaId] = useState("");
 
     useEffect(() => {
         const currentData = date.toLocaleDateString().replaceAll("/", "-");
@@ -24,25 +25,55 @@ export const AgendaProvider = ({ children }) => {
         if (
             tranforTimeInMinutes(data.horario_inicial) >
             tranforTimeInMinutes(data.horario_final)
-        )
-            return toast.error("Horario final incorreto!");
-        await api.post(`agendas/medico/${currentMedicoId}/`, data)
+        ) {
+            toast.error("Horario final incorreto!");
+            return result
+        }
+        if (data.horario_inicial.length < 5) {
+            return toast.error("Horário inicial incorreto!");
+        }
+        if (data.horario_final.length < 5) {
+            toast.error("Horário final incorreto!");
+            return result
+        }
+        if (data.horario_inicial == data.horario_final) {
+            toast.error("Horário final incorreto!");
+            return result
+        }
+        await api
+            .post(`agendas/medico/${currentMedicoId}/`, data)
             .then(() => {
                 toast.success("Horário criado!!");
                 result = true;
             })
             .catch((err) => {
+                console.log(err);
                 toast.error("Esse horário ja passou!!");
                 result = false;
             });
         return result;
     };
 
-    const getHorarios = () => {
+    const getHorarios = async () => {
+        const token = localStorage.getItem("@clinicaToken") || "";
+
         const currentData = date.toLocaleDateString().replaceAll("/", "-");
-        api.get(`agendas/medico/${currentMedicoId}/?data=${currentData}`).then(
-            ({ data }) => setHorarios(data.results)
-        );
+        await api
+            .get(`agendas/medico/${currentMedicoId}/?data=${currentData}`, {
+                headers: { authorization: `Bearer ${token}` },
+            })
+            .then(({ data }) => setHorarios(data.results));
+    };
+
+    const deleteHorario = async (id) => {
+        const token = localStorage.getItem("@clinicaToken") || "";
+
+        await api
+            .delete(`agendas/${id}/`, {
+                headers: { authorization: `Bearer ${token}` },
+            })
+            .then(() => toast.success("Horario apagado!"))
+            .catch(() => toast.error("Erro em apagar horario!"));
     };
 
     return (
@@ -55,6 +86,9 @@ export const AgendaProvider = ({ children }) => {
                 horarios,
                 createHorario,
                 getHorarios,
+                agendaId,
+                setAgendaId,
+                deleteHorario,
             }}>
             {children}
         </AgendaContext.Provider>

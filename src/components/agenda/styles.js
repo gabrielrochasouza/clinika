@@ -8,13 +8,60 @@ export const Div = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    margin-top: 20px;
 
     @media (min-width: 1680px) {
         max-height: 400px;
     }
 
+    .div_button_and_legenda {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        .div_legenda {
+            display: flex;
+            align-items: center;
+
+            .div_legenda_1,
+            .div_legenda_2,
+            .div_legenda_3,
+            .div_legenda_4 {
+                margin-right: 16px;
+
+                svg {
+                    margin-right: 10px;
+                    border: 0.5px solid black;
+                    border-radius: 50%;
+                    color: transparent;
+                    cursor: default;
+                }
+
+                @media (max-width: 425px) {
+                    display: none;
+                }
+            }
+
+            .div_legenda_1 svg {
+                background: #ffffff;
+            }
+
+            .div_legenda_2 svg {
+                background: #009900;
+            }
+
+            .div_legenda_3 svg {
+                background: #cccc00;
+            }
+
+            .div_legenda_4 svg {
+                background: red;
+            }
+        }
+    }
+
     button {
-        margin-bottom: 10px;;
+        margin-bottom: 10px;
     }
 `;
 

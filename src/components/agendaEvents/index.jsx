@@ -1,24 +1,10 @@
-import { useEffect, useState } from "react";
 import { useAgenda } from "../../providers/agenda";
-import { DivContainer, DivContent, DivNow } from "./styles";
-import { FaCaretRight } from "react-icons/fa";
-
+import { DivContainer, DivContent } from "./styles";
 import { getPorcentXRelationY, tranforTimeInMinutes } from "../../utils";
+import NowPointer from "../agendaNowPointer";
 
 const AgendaEvents = ({ openModal, nowRef }) => {
     const { horarios, date } = useAgenda();
-    const [now, setNow] = useState(
-        new Date(Date.now()).toLocaleString().replaceAll("/", "-").split(" ")
-    );
-
-    setInterval(() => {
-        setNow(
-            new Date(Date.now())
-                .toLocaleString()
-                .replaceAll("/", "-")
-                .split(" ")
-        );
-    }, 10000);
 
     return (
         <DivContainer>
@@ -34,26 +20,25 @@ const AgendaEvents = ({ openModal, nowRef }) => {
                             tranforTimeInMinutes(event.horario_final),
                             1440
                         )}
-                        onClick={() => openModal(event)}>
+                        onClick={() => openModal(event)}
+                        marcado={event.horario_marcado}
+                        passou={event.horario_passou}
+                        disponivel={event.horario_disponivel_para_marcar}
+                        cancelada={event.consulta?.consulta_cancelada}>
+                        <div />
                         <span>
                             {event.horario_inicial} - {event.horario_final}
                         </span>
                         <span>
-                            {event.consulta ? "marcado" : "Horario vago"}
+                            -{" "}
+                            {event.consulta
+                                ? event.consulta.paciente.nome
+                                : "Vago"}
                         </span>
                     </DivContent>
                 ))}
             </div>
-            <DivNow
-                inv={
-                    date.toLocaleDateString().replaceAll("/", "-") === now[0]
-                        ? false
-                        : true
-                }
-                ref={nowRef}
-                ini={getPorcentXRelationY(tranforTimeInMinutes(now[1]), 1440)}>
-                <FaCaretRight />
-            </DivNow>
+            <NowPointer date={date} nowRef={nowRef} />
         </DivContainer>
     );
 };

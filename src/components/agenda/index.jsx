@@ -2,7 +2,7 @@ import { DivContainer, DivContent, DivBody, Div } from "./styles";
 
 import { useState, useEffect, useRef } from "react";
 import toast from "react-hot-toast";
-
+import { FaCircle } from "react-icons/fa";
 import AgendaTimes from "../agendaTimes";
 import AgendaFrames from "../agendaFrames";
 import AgendaEvents from "../agendaEvents";
@@ -45,9 +45,29 @@ const Agenda = () => {
 
     return (
         <Div>
-            <button onClick={openModalCriarHorario}>
-                Criar novo horário vago
-            </button>
+            <div className='div_button_and_legenda'>
+                <div className='div_legenda'>
+                    <div className='div_legenda_1 div_legenda'>
+                        <FaCircle />
+                        <span>Vago</span>
+                    </div>
+                    <div className='div_legenda_2 div_legenda'>
+                        <FaCircle />
+                        <span>Marcado</span>
+                    </div>
+                    <div className='div_legenda_3 div_legenda'>
+                        <FaCircle />
+                        <span>Ja passou</span>
+                    </div>
+                    <div className='div_legenda_4 div_legenda'>
+                        <FaCircle />
+                        <span>Cancelado</span>
+                    </div>
+                </div>
+                <button onClick={openModalCriarHorario}>
+                    Criar novo horário vago
+                </button>
+            </div>
             <DivContainer>
                 <DivContent>
                     <AgendaTimes />
@@ -60,9 +80,14 @@ const Agenda = () => {
                     </DivBody>
                 </DivContent>
             </DivContainer>
-            {openModalCreateConsulta && <ModalCreateConsulta />}
+            {openModalCreateConsulta && (
+                <ModalCreateConsulta
+                    agendaId={consultaInfo.id}
+                    passou={consultaInfo.horario_passou}
+                />
+            )}
             {openModalConsultaDetails && (
-                <ModalConsulta consultaInfo={consultaInfo} />
+                <ModalConsulta consultaId={consultaInfo.consulta.id} />
             )}
             {openModalCreateHorario && <ModalCriarHorario />}
         </Div>
