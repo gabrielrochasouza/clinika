@@ -8,7 +8,8 @@ export const Div = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    margin-top: 20px;
+    margin-top: 0px;
+    
 
     @media (min-width: 1680px) {
         max-height: 400px;

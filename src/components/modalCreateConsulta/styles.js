@@ -24,8 +24,11 @@ export const StyledSelect = styled.select`
     width: 100%;
     padding: 0.8rem;
     font-size: 1rem;
-    color: var(--tx-p);
+    color: #000;
     margin-bottom: 16px;
+    option{
+        color: #000;
+    }
 `;
 
 export const StyledH4 = styled.h4`

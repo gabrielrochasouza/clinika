@@ -13,6 +13,7 @@ import {
 } from "./styles";
 import { useConsulta } from "../../providers/consultas";
 import { useAgenda } from "../../providers/agenda";
+import Input from "../input";
 
 const ModalCreateConsulta = ({ agendaId, passou }) => {
     const { openCloseModalCreateConsulta } = useModal();
@@ -55,18 +56,40 @@ const ModalCreateConsulta = ({ agendaId, passou }) => {
     return (
         <Modal
             closeModal={openCloseModalCreateConsulta}
-            title={"Marcar consulta"}
+            title={"Marcar Consulta"}
             bodyContent={
                 <StyledDiv passou={passou}>
-                    <StyledInput
-                        placeholder={"Buscar paciente"}
+                    <Input
+                        inputName={"Buscar Paciente"}
+                        Icon={<></>}
+                        placeholder={" "}
                         onChange={(e) =>
                             getPacientes(`?nome=${e.target.value}`)
                         }
                     />
+                    
+                    {/* <Input
+                    isSelect
+                    inputName={"Selecionar paciente"}
+                    register={register}
+                    onChange={(e) => onChangeSelect(e.target.value)}
+                    options={
+                        <>
+                        <option value=""></option>
+                        {pacientes.results
+                        ? pacientes.results.map((paciente) => (
+                              <option key={paciente.id} value={paciente.id}>
+                                  {paciente.nome}
+                              </option>
+                          ))
+                        : <></>
+                          }
+                        </>
+                        }
+                    /> */}
                     <StyledSelect
                         onChange={(e) => onChangeSelect(e.target.value)}
-                        placeholder={"Selecionar paciente"}>
+                        placeholder={"Selecionar Paciente"}>
                         {pacientes.results
                             ? pacientes.results.map((paciente) => (
                                   <option key={paciente.id} value={paciente.id}>
@@ -79,6 +102,7 @@ const ModalCreateConsulta = ({ agendaId, passou }) => {
                                   </option>
                               ))}
                     </StyledSelect>
+                    <span>Informações do paciente</span>
                     <p>NOME: {currentPaciente.nome}</p>
                     <p>EMAIL: {currentPaciente.email}</p>
                     <p>CPF: {currentPaciente.cpf}</p>
@@ -86,20 +110,26 @@ const ModalCreateConsulta = ({ agendaId, passou }) => {
                     <p>
                         DATA DE NASCIMENTO: {currentPaciente?.data_nascimento}
                     </p>
-                    <StyledH4>Descrição da consulta</StyledH4>
+                    {/* <StyledH4>Descrição da consulta</StyledH4> */}
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <StyledTextArea required {...register("descricao")} />
+                        <Input 
+                        isTextarea
+                        inputName={"Descrição da consulta"}
+                        name={"descricao"} 
+                        register={register} 
+                        />
                         <div>
                             <Button
                                 disabled={disable}
-                                text={"Criar conslta"}
+                                text={"Criar Consulta"}
                                 className='button_criar'
                             />
                             <Button
                                 type='button'
                                 disabled={disable}
-                                text={"Apagar horario"}
+                                text={"Apagar Horário"}
                                 onClick={onDeleteHorario}
+                                style={{backgroundColor:"var(--grey-p)"}}
                             />
                         </div>
                     </form>

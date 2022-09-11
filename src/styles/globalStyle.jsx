@@ -27,13 +27,15 @@ const GlobalStyle = createGlobalStyle`
         background-color: #00b40f;
         color: var(--tx-w);
         border-radius: 4px;
-        padding: 3px;
+        padding:0 3px;
+        display: inline-block;
     }
     .passed{
         border-radius: 4px;
         color: var(--tx-w);
         background-color: red;
-        padding: 3px;
+        padding:0 3px;
+        display: inline-block;
         position: relative;
     }
     .two-columns{

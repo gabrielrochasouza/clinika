@@ -5,9 +5,13 @@ export const DivContainer = styled.div`
     margin: 0 16px 16px;
     border-radius: 16px;
     height: 95%;
-`;
+    h4{
+        padding: 0 16px;
+    }
+    `;
 
 export const DivContent = styled.div`
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,11 +21,22 @@ export const DivContent = styled.div`
     .div_medicos {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: space-evenly;
+        align-items: flex-start;
+        justify-content: flex-start;
         width: 90%;
-        max-width: 310px;
-        gap: 16px;
+        /* max-width: 310px; */
+        flex: 1;
+        small{
+            color: var(--tx-p);
+        }
+        ul{
+            margin: -20px 0 0;
+            visibility: hidden;
+        }
+        >div:focus-within ~ ul, ul:hover {
+            visibility: visible;
+        }
+
 
         .div_medicos_input {
             display: flex;
@@ -32,7 +47,6 @@ export const DivContent = styled.div`
             border-radius: 4px;
             background-color: var(--bg-p);
             text-align: center;
-
             :hover {
                 border-color: var(--bg-t-hover);
             }
@@ -79,6 +93,7 @@ export const DivContent = styled.div`
         background: var(--bg-s);
         border: 2px solid var(--border);
         border-radius: 8px;
+        
         font-family: Arial, Helvetica, sans-serif;
         line-height: 1.125em;
     }

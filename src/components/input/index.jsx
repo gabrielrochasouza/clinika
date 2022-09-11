@@ -12,6 +12,8 @@ const Input = ({
   type = "text",
   style,
   mask,
+  isTextarea=false,
+  Icon,
   ...rest
 }) => {
   const [visible, setVisible] = useState(false);
@@ -50,7 +52,22 @@ const Input = ({
             {visible ? <MdVisibility /> : <MdVisibilityOff />}
           </div>
         </InputContainer>
-      ) : (
+      ): isTextarea ? (
+        <InputContainer>
+          <textarea
+            {...register(name)}
+            required={true}
+            className="input"
+            name={name}
+            placeholder={" "}
+            {...rest}
+            onInput={(e) => {
+              if (mask) e.target.value = mask(e.target.value);
+            }}
+          />
+          <label className="user-label">{inputName}</label>
+        </InputContainer>
+      ) : register ? (
         <InputContainer>
           <input
             {...register(name)}
@@ -59,6 +76,21 @@ const Input = ({
             className="input"
             name={name}
             placeholder={" "}
+            {...rest}
+            onInput={(e) => {
+              if (mask) e.target.value = mask(e.target.value);
+            }}
+          />
+          <label className="user-label">{inputName}</label>
+        </InputContainer>
+      ):(
+        <InputContainer>
+          {Icon}
+          <input
+            required={true}
+            type={type}
+            className="input"
+            name={name}
             {...rest}
             onInput={(e) => {
               if (mask) e.target.value = mask(e.target.value);

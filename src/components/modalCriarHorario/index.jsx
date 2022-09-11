@@ -44,6 +44,10 @@ const ModalCriarHorario = () => {
                             .split("/")
                             .reverse()
                             .join("-")}
+                        min={date
+                            .toLocaleDateString()
+                            .split("/")
+                            .join("-")}
                         name='dia_da_consulta'
                         register={register}
                     />
