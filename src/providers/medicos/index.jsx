@@ -16,8 +16,6 @@ export const MedicoProvider = ({ children }) => {
         setMedicos(res.data);
       })
       .catch((err) => {
-        console.log(err);
-        
         toast.error("Error no carregamento");
       });
   };

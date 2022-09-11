@@ -7,7 +7,6 @@ const SearchInput = ({submitFunction, placeholder="Faça sua pesquisa"})=>{
         <SearchInputContainer onSubmit={async(e)=>{
             e.preventDefault()
             let text=e.target[0].value
-            console.log(text)
             await submitFunction(text)
         }}>
             <span>
@@ -18,7 +17,6 @@ const SearchInput = ({submitFunction, placeholder="Faça sua pesquisa"})=>{
             placeholder={placeholder}
             onChange={async(e)=>{
                 if(e.target.value.length===0){
-                    console.log("oi")
                     await submitFunction('')}
                 } 
             }

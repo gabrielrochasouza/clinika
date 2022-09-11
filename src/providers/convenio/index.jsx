@@ -16,7 +16,6 @@ export const ConvenioProvider = ({ children }) => {
       })
       .then((res) => toast.success("Convênio criado!"))
       .catch((err) => {
-        console.log(err);
         toast.error("Esse Convênio já existe");
       });
   };

@@ -80,7 +80,7 @@ const TableAtendentes = () => {
 
         {openModalCreate && (
             <Modal
-                title={"Cadastrar Paciente"}
+                title={"Cadastrar Atendente"}
                 closeModal={()=>setOpenModalCreate(false)}
                 bodyContent={
                     <form onSubmit={handleSubmit(async(data)=>{

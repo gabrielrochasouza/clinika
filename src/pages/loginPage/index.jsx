@@ -3,10 +3,11 @@ import { FaLock } from "react-icons/fa";
 import Input from "../../components/input";
 import Button from "../../components/submitButton";
 import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useLogin } from "../../providers/login";
 import { Navigate } from "react-router-dom";
 import { useUsuarios } from "../../providers/usuarios";
+import { useDashboard } from "../../providers/dashboard";
 
 const LoginPage = () => {
   const { login } = useLogin();
@@ -14,11 +15,12 @@ const LoginPage = () => {
   const { register, handleSubmit } = useForm();
   const [disabled, setDisabled] = useState(false);
   const [forgotPassword, setForgotPassword] = useState(false);
-
+  const {changeCurrentSelection} = useDashboard()
 
   const loginSubmission = async (data) => {
     setDisabled(true);
-    const response = await login(data, getProfile);
+    await login(data, getProfile);
+    changeCurrentSelection("overview")
     setDisabled(false);
   };
 

@@ -48,7 +48,6 @@ export const LoginProvider = ({ children }) => {
             toast.success("Senha Alterada com Sucesso!");
           })
           .catch((err) => {
-            console.log(err);
             toast.error("Não foi possível alterar senha");
           });
       })

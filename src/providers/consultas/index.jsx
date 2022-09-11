@@ -18,7 +18,6 @@ export const ConsultaProvider = ({ children }) => {
         setConsultas(res.data);
       })
       .catch((err) => {
-        console.log(err);
         toast.error("Error no carregamento");
       });
   };
@@ -34,7 +33,6 @@ export const ConsultaProvider = ({ children }) => {
         toast.success("Consulta atualizada")
       })
       .catch((err) => {
-        console.log(err);
         toast.error("Error no carregamento");
       });
   }
