@@ -3,20 +3,8 @@ import styled from "styled-components";
 export const DivContainer = styled.div`
     background-color: var(--bg-s);
     margin: 0 16px 16px;
-    padding: 20px 20px 40px;
     border-radius: 16px;
     height: 95%;
-
-    @keyframes fadeUp {
-        from {
-            opacity: 0;
-            transform: translateY(100px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0px);
-        }
-    }
 `;
 
 export const DivContent = styled.div`
