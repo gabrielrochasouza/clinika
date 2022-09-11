@@ -8,6 +8,7 @@ export const MedicoProvider = ({ children }) => {
     const [medicos, setMedicos] = useState({});
     const [allMedicos, setAllMecicos] = useState([]);
 
+
     const getMedicos = async (query) => {
         const token = localStorage.getItem("@clinicaToken") || "";
         let endpoint = query
@@ -20,7 +21,6 @@ export const MedicoProvider = ({ children }) => {
             })
             .catch((err) => {
                 console.log(err);
-
                 toast.error("Error no carregamento");
             });
     };

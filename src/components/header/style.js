@@ -9,6 +9,13 @@ export const HeaderContainer = styled.header`
   background-color: var(--bg-s);
   position: sticky;
   top: 0;
+  .profile-pic{
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+  }
   svg {
     font-size: 30px;
     color: var(--tx-p);

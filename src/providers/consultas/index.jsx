@@ -7,6 +7,7 @@ const ConsultaContext = createContext({});
 export const ConsultaProvider = ({ children }) => {
     const [consultas, setConsultas] = useState({});
 
+
     const getConsultas = async (data) => {
         const token = localStorage.getItem("@clinicaToken") || "";
         const endpoint = data ? `consultas/?data=${data}` : "consultas/";
@@ -22,6 +23,21 @@ export const ConsultaProvider = ({ children }) => {
                 toast.error("Error no carregamento");
             });
     };
+  
+    const patchConsulta = async(data, id)=>{
+      const token = localStorage.getItem("@clinicaToken") || "";
+      const endpoint = `consultas/${id}/`
+      await api
+        .patch(endpoint, data, {
+          headers: { authorization: `Bearer ${token}` },
+        })
+        .then(async(res) => {
+          toast.success("Consulta atualizada")
+        })
+        .catch((err) => {
+          toast.error("Error no carregamento");
+        });
+    }
 
     const createConsulta = async (data, medicoId, pacienteId, agendaId) => {
         const token = localStorage.getItem("@clinicaToken") || "";
@@ -32,6 +48,7 @@ export const ConsultaProvider = ({ children }) => {
             })
             .then(() => toast.success("Consulta marcada!"));
     };
+
 
     const patchConsulta = async (data, id) => {
         const token = localStorage.getItem("@clinicaToken") || "";

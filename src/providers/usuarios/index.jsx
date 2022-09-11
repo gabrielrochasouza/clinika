@@ -1,6 +1,6 @@
 import { createContext, useState, useContext } from "react";
 import toast from "react-hot-toast";
-import api from "../../services";
+import api, { imgur_api } from "../../services";
 
 const UsuariosContext = createContext({});
 
@@ -36,7 +36,6 @@ export const UsuariosProvider = ({ children }) => {
           setPacientes(res.data);
         })
         .catch((err) => {
-          console.log(err);
           toast.error("Error no carregamento");
         });
     } else {
@@ -48,7 +47,6 @@ export const UsuariosProvider = ({ children }) => {
           setPacientes(res.data);
         })
         .catch((err) => {
-          console.log(err);
           toast.error("Error no carregamento");
         });
     }
@@ -207,6 +205,46 @@ export const UsuariosProvider = ({ children }) => {
       .catch((err) => toast.error("Credenciais inválidas"));
   }
 
+  const [currentImageSelected, setCurrentImage] = useState("")
+
+
+  const generateUrl = async(file)=>{
+    const token = localStorage.getItem("@clinicaToken") || "";
+    const formData = new FormData()
+    formData.append("sampleFile", file)
+    await imgur_api.post("/upload/",formData, {
+      headers:{
+        "Content-Type":"multipart/form-data"
+      }
+    })
+    .then((res)=>{
+      if(!res.data?.image_url) throw new Error
+      setCurrentImage(res.data.image_url)
+      toast.success("Upload bem sucedido")
+    }).catch((err) => {
+      toast.error("Imagem não conseguiu ser carregada, tente novamente")
+    })
+  }
+
+
+  const updateProfileImage = async(id, data)=>{
+    const token = localStorage.getItem("@clinicaToken") || "";
+    await api
+    .patch(`/usuarios/${id}/`, data, {
+      headers: { authorization: `Bearer ${token}` },
+    })
+    .then((res) => {
+      toast.success("Perfil Atualizado com Sucesso!");
+    })
+    .catch((err) => {
+      const errors = err.response.data;
+      let message = Object.values(errors).flat().join("; ");
+      toast.error(
+        message.length ? message : "Não foi possível atualizar."
+      );
+    });
+  }
+
   
   return (
     <UsuariosContext.Provider
@@ -227,6 +265,10 @@ export const UsuariosProvider = ({ children }) => {
         createAtendente,
         deactivateAccount,
         getAllPacientes,
+        generateUrl,
+        currentImageSelected,
+        setCurrentImage,
+        updateProfileImage
       }}
     >
       {children}
