@@ -14,6 +14,7 @@ export const ModalContainer = styled.div`
     align-items: center;
     justify-content: center;
     overflow: auto;
+
     .modal-box{
         background-color: var(--bg-s);
         color: var(--tx-p);

@@ -14,7 +14,14 @@ export const InputContainer = styled.div`
     color: var(--tx-p);
     transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
   }
-
+  .input-icon{
+    position: absolute;
+    right: 12px;
+    bottom: 10px;
+    svg{
+      color: var(--tx-p);
+    }
+  }
   .eye-icon {
     border-radius: 50%;
     display: flex;
@@ -45,6 +52,10 @@ export const InputContainer = styled.div`
     max-width: 90%;
   }
 
+  textarea{
+    resize: none;
+  }
+
   .input:focus,
   input:valid,
   select:valid {
@@ -52,7 +63,8 @@ export const InputContainer = styled.div`
     border: 1.5px solid var(--bg-t);
   }
 
-  .input:focus ~ label,
+
+  .input:focus ~ label, textarea:valid ~ label,
   input:valid ~ label,
   select:valid ~ label,
   input[type="email"]:not(:placeholder-shown) ~ label,

@@ -12,7 +12,7 @@ import Empty from "../empty";
 const TableConsultasOverview = ({today}) => {
     const {consultas, getConsultas} = useConsulta()
     const { openModalConsultaDetails, openCloseModalConsultaDetails } = useModal();
-    const [consultaInfo, setConsultaInfo] = useState({})
+    const [consultaId, setConsultaId] = useState('')
     useEffect(()=>{
         getConsultas(getTodayDate().nowDate)
     },[])
@@ -39,10 +39,10 @@ const TableConsultasOverview = ({today}) => {
         body={
           <>
             {consultas.results ? consultas.results.length===0 ? <Empty/> : consultas.results.map(consulta=>(
-            <li key={consulta.id} onClick={()=>{
+              <li key={consulta.id} onClick={async()=>{
+                setConsultaId(consulta.id)
                 openCloseModalConsultaDetails()
-                setConsultaInfo(consulta)
-            }}>
+              }}>
                 <span>{consulta.paciente.nome}</span>
                 <span >{consulta.medico.nome}</span>
                 <span  >
@@ -56,8 +56,8 @@ const TableConsultasOverview = ({today}) => {
 
           </>
         }
-      />
-      {openModalConsultaDetails && <ModalConsulta consultaInfo={consultaInfo}/>}
+        />
+        {openModalConsultaDetails && <ModalConsulta consultaId={consultaId}/>}
     </>
   );
 };

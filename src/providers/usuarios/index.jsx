@@ -52,6 +52,19 @@ export const UsuariosProvider = ({ children }) => {
     }
   };
 
+  const getAllPacientes = async () => {
+    const token = localStorage.getItem("@clinicaToken") || "";
+    await api
+      .get("pacientes/todos/", { headers: { authorization: `Bearer ${token}` } })
+      .then((res) => {
+        setPacientes(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Error no carregamento");
+      })
+  } 
+
   const createPacientes = async (data) => {
     const token = localStorage.getItem("@clinicaToken") || "";
     await api
@@ -251,6 +264,7 @@ export const UsuariosProvider = ({ children }) => {
         atendentes,
         createAtendente,
         deactivateAccount,
+        getAllPacientes,
         generateUrl,
         currentImageSelected,
         setCurrentImage,
