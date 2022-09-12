@@ -13,7 +13,7 @@ export const DivContainer = styled.div`
 export const DivContent = styled.div`
     padding: 20px;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
     gap: 16px;
     width: 100%;
@@ -23,7 +23,7 @@ export const DivContent = styled.div`
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
-        width: 90%;
+        width: 100%;
         /* max-width: 310px; */
         flex: 1;
         small{
@@ -85,6 +85,7 @@ export const DivContent = styled.div`
         flex-direction: row;
         align-items: flex-start;
         justify-content: space-around;
+        
     }
 
     .react-calendar {

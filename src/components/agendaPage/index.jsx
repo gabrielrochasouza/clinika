@@ -27,7 +27,6 @@ const AgendaPage = () => {
       <DivContent>
         <div className="div_medicos">
           <h3>Médicos</h3>
-          {/* <div className='div_medicos_input'> */}
           <Input
             placeholder=" "
             value={inputValue}
@@ -41,7 +40,6 @@ const AgendaPage = () => {
               </div>
             }
           />
-          {/* </div> */}
           {allMedicos.length !== 0 ? (
             <ListMedicos
               list={allMedicos}
@@ -60,10 +58,11 @@ const AgendaPage = () => {
       </DivContent>
       <h4>
         {currentMedicoId
-          ? "Doutor(a): " + allMedicos?.find((m) => m.id === currentMedicoId)?.nome
-          : "Selecione algum médico"}
+          && "Doutor(a): " +
+            allMedicos?.find((m) => m.id === currentMedicoId)?.nome + " |Dia: " + date.toLocaleString().split(" ")[0]
+          }
       </h4>
-      <Agenda />
+      {currentMedicoId && <Agenda />}
     </DivContainer>
   );
 };

@@ -29,18 +29,32 @@ export const getTodayDate = () => {
     return dateObj;
 };
 
-export const timePassed = (finalHour) => {
+export const timePassed = (initialHour, finalHour) => {
+    const [initialHours, initialMinutes] = initialHour.split(":");
     const [finalHours, finalMinutes] = finalHour.split(":");
     const date = new Date();
     const nowHour = date.getHours();
     const nowMinutes = date.getMinutes();
-    if (Number(nowHour) > Number(finalHours)) {
-        return true;
-    } else if (Number(nowHour) === Number(finalHours)) {
-        return Number(nowMinutes) > Number(finalMinutes) ? true : false;
+
+    if(nowHour > finalHours){
+        return "passed"
+    }else if(nowHour == finalHours){
+        if(nowMinutes > finalMinutes) return "passed"
     }
-    return false;
+
+    console.log(nowHour)
+    if(nowHour < initialHours){
+        return "will-pass"
+    }else if(nowHour == initialHours){
+        if(nowMinutes < initialMinutes) return "will-pass"
+    }
+    return "happening"
+
+    
 };
+//passed
+//will-pass
+//happening
 
 export const getPorcentXRelationY = (x, y) => {
     return ((x / y) * 100).toFixed(4);

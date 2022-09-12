@@ -16,6 +16,8 @@ const TableConsultasOverview = ({today}) => {
     useEffect(()=>{
         getConsultas(getTodayDate().nowDate)
     },[])
+
+
   return (
     <>
     
@@ -39,14 +41,18 @@ const TableConsultasOverview = ({today}) => {
         body={
           <>
             {consultas.results ? consultas.results.length===0 ? <Empty/> : consultas.results.map(consulta=>(
-              <li key={consulta.id} onClick={async()=>{
+              <li 
+              key={consulta.id}
+              className={timePassed(consulta.agenda.horario_inicial, consulta.agenda.horario_final)}
+              onClick={async()=>{
                 setConsultaId(consulta.id)
                 openCloseModalConsultaDetails()
+                console.log(timePassed(consulta.agenda.horario_inicial, consulta.agenda.horario_final))
               }}>
                 <span>{consulta.paciente.nome}</span>
                 <span >{consulta.medico.nome}</span>
                 <span  >
-                    <strong className={timePassed(consulta.agenda.horario_final) ? "passed" : "will-pass"}>
+                    <strong >
                     {consulta.agenda.horario_inicial}-{consulta.agenda.horario_final}
                     </strong>
                 </span>

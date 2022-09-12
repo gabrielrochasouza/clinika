@@ -14,7 +14,7 @@ import { useDashboard } from "../../providers/dashboard";
 import { useUsuarios } from "../../providers/usuarios";
 
 const SideMenu = () => {
-  const { logout, open, openClose } = useLogin();
+  const { logout, open, openClose, close } = useLogin();
   const { changeCurrentSelection } = useDashboard();
   const { userData} = useUsuarios();
 
@@ -30,32 +30,50 @@ const SideMenu = () => {
         <div className="top">
           <li
             className="menu-title"
-            onClick={() => changeCurrentSelection("overview")}
+            onClick={() => {
+              changeCurrentSelection("overview")
+              openClose()
+            }}
           >
             <AiFillMedicineBox />
             <span>Clínica Dashboard</span>
           </li>
-          <li onClick={() => changeCurrentSelection("overview")}>
+          <li onClick={() =>{
+            changeCurrentSelection("overview")
+            close()
+             }}>
             <BsBook />
             <span>Resumo</span>
             {!open && <div className="box-message">Resumo</div>}
           </li>
-          <li onClick={() => changeCurrentSelection("pacientes")}>
+          <li onClick={() => {
+            changeCurrentSelection("pacientes")
+            close()
+          }}>
             <BsFillPeopleFill />
             <span>Pacientes</span>
             {!open && <div className="box-message">Pacientes</div>}
           </li>
-          <li onClick={() => changeCurrentSelection("agenda")}>
+          <li onClick={() =>{
+            changeCurrentSelection("agenda")
+            close() 
+             }}>
             <BsCalendarDateFill />
             <span>Agenda</span>
             {!open && <div className="box-message">Agenda</div>}
           </li>
-          <li onClick={() => changeCurrentSelection("medicos")}>
+          <li onClick={() => {
+            changeCurrentSelection("medicos")
+            close()
+        }}>
             <FaNotesMedical />
             <span>Médicos</span>
             {!open && <div className="box-message">Médicos</div>}
           </li>
-          <li onClick={() => changeCurrentSelection("consultas")}>
+          <li onClick={() => {
+            changeCurrentSelection("consultas")
+            close()
+        }}>
             <RiCalendarCheckLine />
             <span>Consultas</span>
             {!open && <div className="box-message">Consulta</div>}
@@ -63,13 +81,19 @@ const SideMenu = () => {
 
           {status === "Admin" && (
             <>
-              <li onClick={() => changeCurrentSelection("atendentes")}>
+              <li onClick={() => {
+                changeCurrentSelection("atendentes")
+                close()
+            }}>
                 <BsChatLeftDotsFill />
                 <span>Atendentes</span>
                 {!open && <div className="box-message">Atendentes</div>}
               </li>
 
-              <li onClick={() => changeCurrentSelection("convenio")}>
+              <li onClick={() => {
+                changeCurrentSelection("convenio")
+                close()
+            }}>
                 <FaHandshake />
                 <span>Convênio</span>
                 {!open && <div className="box-message">Convênio</div>}

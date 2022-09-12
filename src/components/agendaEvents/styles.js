@@ -18,7 +18,7 @@ export const DivContent = styled.div`
     border: 0.25px solid rgba(0, 0, 0, 0.3);
     border-radius: 6px;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     cursor: pointer;
 
     :hover {

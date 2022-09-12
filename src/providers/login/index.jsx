@@ -9,7 +9,7 @@ export const LoginProvider = ({ children }) => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const openClose = () => setOpen(!open);
-
+  const close = ()=>setOpen(false)
   const login = async (data, setUserData) => {
     await api
       .post("/login/", data)
@@ -61,6 +61,7 @@ export const LoginProvider = ({ children }) => {
         logout,
         open,
         openClose,
+        close,
         changePassword,
       }}
     >
