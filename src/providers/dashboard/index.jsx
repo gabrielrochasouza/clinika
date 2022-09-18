@@ -5,6 +5,7 @@ const DashboardContext = createContext({})
 
 export const DashboardProvider = ({children})=>{
     const [currentSelection, setCurrentSelection] = useState("overview")
+ console.log("currentSelection ", currentSelection);
 
     const changeCurrentSelection = (selection)=>setCurrentSelection(selection)
 

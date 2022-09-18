@@ -1,4 +1,4 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import SideMenu from "../../components/sideMenu";
 import { compareTimePassedSinceLastLogin } from "../../utils";
 import { DashboardContainer } from "./style";
@@ -9,11 +9,12 @@ import TableConsultas from "../../components/tableConsultas";
 import TableMedicos from "../../components/tableMedicos";
 import { useDashboard } from "../../providers/dashboard";
 import TableConsultasOverview from "../../components/tableOverviewConsultas";
+import ViewMedico from "../../components/viewMedico";
+import { useMedico } from "../../providers/medicos";
 
 const Dashboard = () => {
-  
-  const {currentSelection} = useDashboard()
-  
+  const { currentSelection } = useDashboard();
+
   compareTimePassedSinceLastLogin();
   if (!localStorage.getItem("@clinicaToken")) {
     return <Navigate to={"/"} />;
@@ -24,36 +25,34 @@ const Dashboard = () => {
       <main>
         <Header />
         <InfoBoxes />
-        {currentSelection==="overview" ? (
+        {currentSelection === "overview" ? (
           <div className="overview">
-            <TablePacientes/>
-            <TableConsultasOverview/>
+            <TablePacientes />
+            <TableConsultasOverview />
           </div>
-        ):(
-          currentSelection==="pacientes" ? (
+        ) : currentSelection === "pacientes" ? (
+          <>
+            <TablePacientes />
+          </>
+        ) : currentSelection === "consultas" ? (
+          <>
+            <TableConsultas />
+          </>
+        ) : currentSelection === "agenda" ? (
+          <>
+            <TableConsultas />
+          </>
+        ) : currentSelection === "medicos" ? (
+          <>
+            <TableMedicos />
+          </>
+        ) : (
+          currentSelection === "viewMedico" && (
             <>
-            <TablePacientes/>
-            </>
-          ):(
-            currentSelection==="consultas" ? (
-            <>
-            <TableConsultas/>
-            </>
-          ):
-            currentSelection==="agendas" ? (
-            <>
-            <TableConsultas/>
-            
-            </>
-          ):currentSelection==="medicos" && (
-            <>
-            <TableMedicos/>
+              <ViewMedico />
             </>
           )
-          )
-
         )}
-
       </main>
     </DashboardContainer>
   );
