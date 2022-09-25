@@ -9,7 +9,6 @@ export const Div = styled.div`
     flex-direction: column;
     align-items: flex-end;
     margin-top: 0px;
-    
 
     @media (min-width: 1680px) {
         max-height: 400px;
@@ -26,8 +25,7 @@ export const Div = styled.div`
 
             .div_legenda_1,
             .div_legenda_2,
-            .div_legenda_3,
-            .div_legenda_4 {
+            .div_legenda_3 {
                 margin-right: 16px;
 
                 svg {
@@ -44,18 +42,14 @@ export const Div = styled.div`
             }
 
             .div_legenda_1 svg {
-                background: #ffffff;
-            }
-
-            .div_legenda_2 svg {
                 background: #009900;
             }
 
-            .div_legenda_3 svg {
+            .div_legenda_2 svg {
                 background: #cccc00;
             }
 
-            .div_legenda_4 svg {
+            .div_legenda_3 svg {
                 background: red;
             }
         }

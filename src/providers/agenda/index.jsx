@@ -21,37 +21,17 @@ export const AgendaProvider = ({ children }) => {
     }, [currentMedicoId, date]);
 
     const createHorario = async (data) => {
-        let result = false;
-        if (
-            tranforTimeInMinutes(data.horario_inicial) >
-            tranforTimeInMinutes(data.horario_final)
-        ) {
-            toast.error("Horario final incorreto!");
-            return result
-        }
-        if (data.horario_inicial.length < 5) {
-            return toast.error("Horário inicial incorreto!");
-        }
-        if (data.horario_final.length < 5) {
-            toast.error("Horário final incorreto!");
-            return result
-        }
-        if (data.horario_inicial == data.horario_final) {
-            toast.error("Horário final incorreto!");
-            return result
-        }
+        let res = {};
         await api
             .post(`agendas/medico/${currentMedicoId}/`, data)
-            .then(() => {
-                toast.success("Horário criado!!");
-                result = true;
+            .then(({ data }) => {
+                res = data;
             })
             .catch((err) => {
                 console.log(err);
-                toast.error("Esse horário ja passou!!");
-                result = false;
+                toast.error(err.response.data.detail);
             });
-        return result;
+        return res;
     };
 
     const getHorarios = async () => {

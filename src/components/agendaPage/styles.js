@@ -93,7 +93,7 @@ export const DivContent = styled.div`
         max-width: 100%;
         background: var(--bg-s);
         border: 2px solid var(--border);
-        border-radius: 8px;
+        border-radius: 10px;
         
         font-family: Arial, Helvetica, sans-serif;
         line-height: 1.125em;
