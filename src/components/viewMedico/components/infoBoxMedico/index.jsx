@@ -29,6 +29,11 @@ export const InfoBoxMedico = () => {
           <span className="number-description">Total de consultas a fazer</span>
         </div>
         <div className="icon"></div>
+        {consultaMedico && (
+          <div>
+            <InfoPacientesConsulta />
+          </div>
+        )}
       </div>
     </InfoBoxesContainer>
   );
