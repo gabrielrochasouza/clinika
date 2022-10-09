@@ -6,8 +6,9 @@ import Loader from "../../../loader";
 import ModalConsulta from "../../../modalConsultaDetails";
 import Table from "../../../table";
 
-const InfoPacientesConsulta = () => {
+const InfoPacientesConsulta = ({ today = false }) => {
   const { consultaMedico } = useConsulta();
+  console.log("consultaMedico ", consultaMedico);
   const { openModalConsultaDetails, openCloseModalConsultaDetails } =
     useModal();
   const [consultaId, setConsultaId] = useState("");
