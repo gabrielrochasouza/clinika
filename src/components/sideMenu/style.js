@@ -9,6 +9,8 @@ export const SideMenuContainer = styled.aside`
   position: sticky;
   height: 100%;
   top: 0;
+  overflow: auto;
+
   @media (max-width: 870px) {
     position: fixed;
     top: 0;
@@ -37,9 +39,12 @@ export const SideMenuContainer = styled.aside`
     justify-content: space-between;
     height: 100%;
     min-height: 100vh;
+    top: 0;
+    position: ${(props) => (props.open ? "initial" : "fixed")};
   }
   li {
     cursor: pointer;
+    animation-delay: 1000ms;
     display: flex;
     align-items: center;
     gap: 10px;

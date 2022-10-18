@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useUsuarios } from "../../providers/usuarios";
 import Loader from "../loader";
 import { TableContainer } from "./style";
@@ -13,7 +14,8 @@ const Table = ({
   getFunction,
   style,
 }) => {
-
+  
+  const currentPageNumber = previous ? ( previous.includes("=") ? Number(previous.split("=")[1])+1 : 2): 1
 
   return (
     <TableContainer style={style}>
@@ -27,7 +29,10 @@ const Table = ({
       </ul>
       <div className="table-footer">
         {(previous || next) && (
-          <button disabled={previous ? false : true} onClick={async()=>{
+          <button 
+          disabled={previous ? false : true} 
+          className={previous ? "" :"visibility-off"}
+          onClick={async()=>{
             if(previous){
               if(previous.includes("=")){
                 const number = previous.split("=")[1]
@@ -45,14 +50,20 @@ const Table = ({
             {Array(Math.ceil(count / 20))
               .fill(0)
               .map((p, i) => (
-                <li key={i} onClick={() => getFunction(`?page=${i + 1}`)}>
+                <li 
+                key={i}
+                className = {i+1==currentPageNumber ? "current-page" : ""} 
+                onClick={() => getFunction(`?page=${i + 1}`)}>
                   {i + 1}
                 </li>
               ))}
           </ul>
         )}
         {(previous || next) && (
-          <button disabled={next ? false : true} onClick={async()=>{
+          <button 
+          disabled={next ? false : true}
+          className={next ? "":"visibility-off" }
+          onClick={async()=>{
             if(next){
               const number = next.split("=")[1]
               await getFunction(`?page=${number}`)

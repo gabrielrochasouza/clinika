@@ -15,10 +15,17 @@ export const InfoBoxesContainer = styled.div`
     :hover {
       transition: 1s all;
       background-color: var(--bg-t);
-      span {
-        color: var(--tx-w);
-        
+      .number{
+
+        span {
+          color: var(--tx-w);
+          
+        }
       }
+      span {
+          color: var(--tx-w);
+          
+        }
     }
     @media (max-width:1150px) {
         flex-basis: 47%;
@@ -34,6 +41,11 @@ export const InfoBoxesContainer = styled.div`
       color: var(--tx-t);
       display: block;
       font-weight: 600;
+      
+      span{
+        color: var(--tx-t);
+        
+      }
     }
     .number-description {
       display: block;

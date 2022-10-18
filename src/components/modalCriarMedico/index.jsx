@@ -45,7 +45,7 @@ const ModalCriarMedico = () => {
               inputName={"Insira a senha do Medico"}
               type="password"
               name="password"
-              pattern=".{8}"
+              pattern=".{8,}"
               title="É necessário no mínimo 8 caracteres"
               register={register}
             />

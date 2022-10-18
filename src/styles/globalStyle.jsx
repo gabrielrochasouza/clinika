@@ -1,4 +1,4 @@
-import { createGlobalStyle } from'styled-components'
+import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
     *{
@@ -9,6 +9,10 @@ const GlobalStyle = createGlobalStyle`
     body{
         background-color: var(--bg-p);
         font-family: var(--tx-f-p);
+    }
+    textarea, input[type=date]{
+        font-family: var(--tx-f-p);
+        font-size:1rem;
     }
     button{
         cursor: pointer;
@@ -23,19 +27,7 @@ const GlobalStyle = createGlobalStyle`
             background-color: var(--bg-t-hover);
         }
     }
-    .will-pass{
-        background-color: #00b40f;
-        color: var(--tx-w);
-        border-radius: 4px;
-        padding: 3px;
-    }
-    .passed{
-        border-radius: 4px;
-        color: var(--tx-w);
-        background-color: red;
-        padding: 3px;
-        position: relative;
-    }
+
     .two-columns{
         display: flex;
         justify-content: space-between;
@@ -65,15 +57,18 @@ const GlobalStyle = createGlobalStyle`
         text-decoration: none;
     }
     :root{
-        --bg-p:${(props)=>props.theme.bgP};
-        --bg-s: ${(props)=>props.theme.bgS};
-        --bg-t: ${(props)=>props.theme.bgT};
-        --bg-t-hover: ${(props)=>props.theme.bgTHover};
-        --tx-p: ${(props)=>props.theme.txP};
-        --tx-s: ${(props)=>props.theme.txS};
-        --tx-w: ${(props)=>props.theme.txW};
-        --tx-t: ${(props)=>props.theme.txT};
-        --border: ${(props)=>props.theme.border};
+        --bg-p:${(props) => props.theme.bgP};
+        --bg-s: ${(props) => props.theme.bgS};
+        --bg-t: ${(props) => props.theme.bgT};
+        --bg-t-i: ${(props) => props.theme.bgTI};
+        --bg-t-hover: ${(props) => props.theme.bgTHover};
+        --tx-p: ${(props) => props.theme.txP};
+        --tx-p-i: ${(props) => props.theme.txPI};
+        --tx-s: ${(props) => props.theme.txS};
+        --tx-w: ${(props) => props.theme.txW};
+        --tx-t: ${(props) => props.theme.txT};
+        --tx-t-i: ${(props) => props.theme.txTI};
+        --border: ${(props) => props.theme.border};
         --tx-f-p:'Open Sans', sans-serif;
         --tx-f-s:'Montserrat', sans-serif;
         --grey-p:#575757
@@ -122,7 +117,6 @@ const GlobalStyle = createGlobalStyle`
             transform: translateX(0px);
         }
     }
-`
+`;
 
-
-export default GlobalStyle
+export default GlobalStyle;

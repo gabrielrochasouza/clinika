@@ -14,6 +14,7 @@ export const ModalContainer = styled.div`
     align-items: center;
     justify-content: center;
     overflow: auto;
+
     .modal-box{
         background-color: var(--bg-s);
         color: var(--tx-p);
@@ -60,7 +61,39 @@ export const ModalContainer = styled.div`
         padding: 20px 16px 16px;
         overflow: auto;
     }
-
+    .drop-zone{
+        width: 100%;
+        border: 3px solid var(--bg-p);
+        display: flex;
+        justify-content: center;
+        border-radius: 10px;
+        align-items: center;
+        min-height: 200px;
+        border-style: dashed;
+        cursor: pointer;
+        overflow: hidden;
+        transition: 500ms all;
+        position: relative;
+        >svg{
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: var(--bg-p);
+            color: var(--bg-t);
+            border-radius: 50%;
+            font-size: 28px;
+            padding: 4px;
+            border: 1px solid var(--bg-t);
+        }
+        img{
+            width: 100%;
+            cursor: pointer;
+        }
+        :hover{
+            transition: 500ms all;
+            border-color:var(--bg-t);
+        }
+    }
     @keyframes scaleUp {
         from{
             transform: scale(0);

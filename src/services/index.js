@@ -1,10 +1,13 @@
 import axios from 'axios'
 
-const token = localStorage.getItem('@clinicaToken') || ''
 
 const api = axios.create({
     baseURL:'http://localhost:8000/',
-    //headers:{'authorization': `Bearer ${token}`}
 })
+
+export const imgur_api = axios.create({
+    baseURL:"https://imgur-api-uploader.onrender.com/"
+})
+
 
 export default api

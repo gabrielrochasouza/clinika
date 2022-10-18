@@ -9,6 +9,13 @@ export const HeaderContainer = styled.header`
   background-color: var(--bg-s);
   position: sticky;
   top: 0;
+  .profile-pic{
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+  }
   svg {
     font-size: 30px;
     color: var(--tx-p);
@@ -28,11 +35,12 @@ export const HeaderContainer = styled.header`
         font-size: 0.85rem;
         border: 1px solid var(--grey-p);
         z-index: 2;
-        width: 144px;
+        width: 124px;
         animation: fadeUp 500ms;
         >li{
             cursor: pointer;
             display: block;
+            font-size:12px;
             :hover{
                 color: var(--tx-t);
                 svg{

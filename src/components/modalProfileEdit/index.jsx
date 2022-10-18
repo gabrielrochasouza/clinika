@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { useUsuarios } from "../../providers/usuarios";
 
 const ModalProfileEdit = () => {
-  const { openModalProfileEdit, openCloseModalProfileEdit } = useModal();
+  const { openCloseModalProfileEdit } = useModal();
   const { register, handleSubmit } = useForm();
   const [disable, setDisable] = useState(false);
   const { userData, updateProfile, getProfile } = useUsuarios();

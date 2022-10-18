@@ -5,7 +5,7 @@ export const InputContainer = styled.div`
   margin: 20px 0;
   width: 100%;
   .input {
-    border: solid 1.5px #9e9e9e;
+    border: solid 1.5px var(--border);
     border-radius: 0.7rem;
     background: none;
     width: 100%;
@@ -14,7 +14,14 @@ export const InputContainer = styled.div`
     color: var(--tx-p);
     transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
   }
-
+  .input-icon{
+    position: absolute;
+    right: 12px;
+    bottom: 10px;
+    svg{
+      color: var(--tx-p);
+    }
+  }
   .eye-icon {
     border-radius: 50%;
     display: flex;
@@ -45,6 +52,11 @@ export const InputContainer = styled.div`
     max-width: 90%;
   }
 
+  textarea{
+    resize: none;
+    
+  }
+
   .input:focus,
   input:valid,
   select:valid {
@@ -52,7 +64,8 @@ export const InputContainer = styled.div`
     border: 1.5px solid var(--bg-t);
   }
 
-  .input:focus ~ label,
+
+  .input:focus ~ label, textarea:valid ~ label,
   input:valid ~ label,
   select:valid ~ label,
   input[type="email"]:not(:placeholder-shown) ~ label,
@@ -67,7 +80,10 @@ export const InputContainer = styled.div`
   input[type="date"] ~ label {
     background-color: var(--bg-s);
   }
+  input[type=date]{
+    height: 48px;
 
+  }
   select {
     text-transform: capitalize;
     option {
