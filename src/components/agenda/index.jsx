@@ -1,5 +1,4 @@
 import { DivContainer, DivContent, DivBody, Div } from "./styles";
-
 import { useState, useEffect, useRef } from "react";
 import toast from "react-hot-toast";
 import { FaCircle } from "react-icons/fa";
@@ -9,7 +8,6 @@ import AgendaEvents from "../agendaEvents";
 import { useAgenda } from "../../providers/agenda";
 import { useModal } from "../../providers/modal";
 import ModalConsulta from "../modalConsultaDetails";
-import ModalCriarHorario from "../modalCriarHorario";
 import ModalCreateConsulta from "../modalCreateConsulta";
 
 const Agenda = () => {
@@ -31,16 +29,7 @@ const Agenda = () => {
 
     const openModalConsulta = (data) => {
         setConsultaInfo(data);
-        if (data.horario_marcado) {
-            openCloseModalConsultaDetails();
-        } else {
-            openCloseModalCreateConsulta();
-        }
-    };
-
-    const openModalCriarHorario = () => {
-        if (!currentMedicoId) return toast.error("Selecione um medico");
-        openCloseModalCreateHorario();
+        openCloseModalConsultaDetails();
     };
 
     return (
@@ -49,23 +38,19 @@ const Agenda = () => {
                 <div className='div_legenda'>
                     <div className='div_legenda_1 div_legenda'>
                         <FaCircle />
-                        <span>Vago</span>
+                        <span>Marcado</span>
                     </div>
                     <div className='div_legenda_2 div_legenda'>
                         <FaCircle />
-                        <span>Marcado</span>
-                    </div>
-                    <div className='div_legenda_3 div_legenda'>
-                        <FaCircle />
                         <span>Ja passou</span>
                     </div>
-                    <div className='div_legenda_4 div_legenda'>
+                    <div className='div_legenda_3 div_legenda'>
                         <FaCircle />
                         <span>Cancelado</span>
                     </div>
                 </div>
-                <button onClick={openModalCriarHorario}>
-                    Criar novo horário vago
+                <button onClick={openCloseModalCreateConsulta}>
+                    Criar nova consulta
                 </button>
             </div>
             <DivContainer>
@@ -80,16 +65,10 @@ const Agenda = () => {
                     </DivBody>
                 </DivContent>
             </DivContainer>
-            {openModalCreateConsulta && (
-                <ModalCreateConsulta
-                    agendaId={consultaInfo.id}
-                    passou={consultaInfo.horario_passou}
-                />
-            )}
+            {openModalCreateConsulta && <ModalCreateConsulta />}
             {openModalConsultaDetails && (
                 <ModalConsulta consultaId={consultaInfo.consulta.id} />
             )}
-            {openModalCreateHorario && <ModalCriarHorario />}
         </Div>
     );
 };
