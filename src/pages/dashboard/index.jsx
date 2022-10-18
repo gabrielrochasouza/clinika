@@ -1,4 +1,4 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import SideMenu from "../../components/sideMenu";
 import { compareTimePassedSinceLastLogin } from "../../utils";
 import { DashboardContainer } from "./style";

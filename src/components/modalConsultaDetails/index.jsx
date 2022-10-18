@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useConvenio } from "../../providers/convenio";
 import Button from "../submitButton";
 import { useConsulta } from "../../providers/consultas";
+import toast from "react-hot-toast";
 import { useAgenda } from "../../providers/agenda";
 
 const ModalConsulta = ({ consultaId }) => {
@@ -100,15 +101,15 @@ const ModalConsulta = ({ consultaId }) => {
               </span>
             </p>
 
-            <h4 style={{ marginTop: "16px" }}>Informação paciente</h4>
-            <p>Nome: {consultaInfo.paciente.nome}</p>
-            <p>Email: {consultaInfo.paciente.email}</p>
-            <p>CPF: {consultaInfo.paciente.cpf}</p>
-            <p>Status: {consultaInfo.paciente.status}</p>
-            <p>Telefone: {consultaInfo.paciente.telefone}</p>
-            <p className="undelineColored">Ver mais sobre o paciente</p>
+              <h4 style={{ marginTop: "16px" }}>Informação paciente</h4>
+              <p>Nome: {consultaInfo.paciente.nome}</p>
+              <p>Email: {consultaInfo.paciente.email}</p>
+              <p>CPF: {consultaInfo.paciente.cpf}</p>
+              <p>Status: {consultaInfo.paciente.status}</p>
+              <p>Telefone: {consultaInfo.paciente.telefone}</p>
+              <p className="undelineColored">Ver mais sobre o paciente</p>
 
-            <h4 style={{ marginTop: "16px" }}>Informação doutor</h4>
+              <h4 style={{ marginTop: "16px" }}>Informação doutor</h4>
 
             <p>Nome: {consultaInfo.medico.nome}</p>
             <p>Email: {consultaInfo.medico.email}</p>
