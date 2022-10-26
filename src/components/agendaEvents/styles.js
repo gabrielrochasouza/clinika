@@ -6,6 +6,7 @@ export const DivContainer = styled.div`
     position: absolute;
     right: 0;
     top: 0;
+    height: 1440px;
 `;
 
 export const DivContent = styled.div`

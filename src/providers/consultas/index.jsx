@@ -6,9 +6,10 @@ const ConsultaContext = createContext({});
 
 export const ConsultaProvider = ({ children }) => {
     const [consultas, setConsultas] = useState({});
-
+    const [currentConsultas, setCurrentConsultas] = useState([]);
 
     const getConsultas = async (data) => {
+        console.log(data)
         const token = localStorage.getItem("@clinicaToken") || "";
         const endpoint = data ? `consultas/?data=${data}` : "consultas/";
         await api

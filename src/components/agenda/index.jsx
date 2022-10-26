@@ -5,72 +5,75 @@ import { FaCircle } from "react-icons/fa";
 import AgendaTimes from "../agendaTimes";
 import AgendaFrames from "../agendaFrames";
 import AgendaEvents from "../agendaEvents";
-import { useAgenda } from "../../providers/agenda";
 import { useModal } from "../../providers/modal";
-import ModalConsulta from "../modalConsultaDetails";
+import ModalConsultaDetails from "../modalConsultaDetails";
 import ModalCreateConsulta from "../modalCreateConsulta";
+import { useAgenda } from "../../providers/agenda";
+import { useLayoutEffect } from "react";
 
 const Agenda = () => {
-    const {
-        openModalConsultaDetails,
-        openCloseModalConsultaDetails,
-        openModalCreateHorario,
-        openCloseModalCreateHorario,
-        openModalCreateConsulta,
-        openCloseModalCreateConsulta,
-    } = useModal();
-    const [consultaInfo, setConsultaInfo] = useState({});
-    const { currentMedicoId } = useAgenda();
-    const nowRef = useRef(null);
+  const {
+    openModalConsultaDetails,
+    openCloseModalConsultaDetails,
+    openModalCreateConsulta,
+    openCloseModalCreateConsulta,
+  } = useModal();
+  const { horarios, date } = useAgenda();
+  const [consultaInfo, setConsultaInfo] = useState({});
+  const nowRef = useRef(null);
+  const divRef = useRef(null);
 
-    useEffect(() => {
-        nowRef.current?.scrollIntoView({ block: "center" });
-    }, []);
+  const scrollToView = () =>
+    divRef.current.scrollTo(0, nowRef.current?.clientWidth - 300);
 
-    const openModalConsulta = (data) => {
-        setConsultaInfo(data);
-        openCloseModalConsultaDetails();
-    };
+  useEffect(() => {
+    scrollToView();
+  }, []);
 
-    return (
-        <Div>
-            <div className='div_button_and_legenda'>
-                <div className='div_legenda'>
-                    <div className='div_legenda_1 div_legenda'>
-                        <FaCircle />
-                        <span>Marcado</span>
-                    </div>
-                    <div className='div_legenda_2 div_legenda'>
-                        <FaCircle />
-                        <span>Ja passou</span>
-                    </div>
-                    <div className='div_legenda_3 div_legenda'>
-                        <FaCircle />
-                        <span>Cancelado</span>
-                    </div>
-                </div>
-                <button onClick={openCloseModalCreateConsulta}>
-                    Criar nova consulta
-                </button>
-            </div>
-            <DivContainer>
-                <DivContent>
-                    <AgendaTimes />
-                    <DivBody>
-                        <AgendaFrames />
-                        <AgendaEvents
-                            openModal={openModalConsulta}
-                            nowRef={nowRef}
-                        />
-                    </DivBody>
-                </DivContent>
-            </DivContainer>
-            {openModalCreateConsulta && <ModalCreateConsulta />}
-            {openModalConsultaDetails && (
-                <ModalConsulta consultaId={consultaInfo.consulta.id} />
-            )}
-        </Div>
-    );
+  const openModalConsulta = (data) => {
+    setConsultaInfo(data);
+    openCloseModalConsultaDetails();
+  };
+
+  return (
+    <Div>
+      <div className='div_button_and_legenda'>
+        <div className='div_legenda'>
+          <div className='div_legenda_1 div_legenda'>
+            <FaCircle />
+            <span>Marcado</span>
+          </div>
+          <div className='div_legenda_2 div_legenda'>
+            <FaCircle />
+            <span>Ja passou</span>
+          </div>
+          <div className='div_legenda_3 div_legenda'>
+            <FaCircle />
+            <span>Cancelado</span>
+          </div>
+        </div>
+        <button onClick={openCloseModalCreateConsulta}>
+          Criar nova consulta
+        </button>
+      </div>
+      <DivContainer ref={divRef}>
+        <AgendaTimes />
+        <DivBody>
+          <AgendaFrames />
+          <AgendaEvents
+            openModal={openModalConsulta}
+            nowRef={nowRef}
+            horarios={horarios}
+            date={date}
+          />
+        </DivBody>
+      </DivContainer>
+      {openModalCreateConsulta && <ModalCreateConsulta />}
+      {openModalConsultaDetails && (
+        <ModalConsultaDetails consultaId={consultaInfo?.consulta.id} />
+      )}
+    </Div>
+  );
 };
 
 export default Agenda;

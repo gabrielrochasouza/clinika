@@ -12,54 +12,56 @@ import TableConsultasOverview from "../../components/tableOverviewConsultas";
 import AgendaPage from "../../components/agendaPage";
 import TableConvenios from "../../components/tableConvenio";
 import TableAtendentes from "../../components/tableAtendente";
+import { useAgenda } from "../../providers/agenda";
 
 const Dashboard = () => {
-    const { currentSelection } = useDashboard();
+  const { currentSelection } = useDashboard();
+  const { date } = useAgenda();
 
-    compareTimePassedSinceLastLogin();
-    if (!localStorage.getItem("@clinicaToken")) {
-        return <Navigate to={"/"} />;
-    }
-    return (
-        <DashboardContainer>
-            <SideMenu />
-            <main>
-                <Header />
-                <InfoBoxes />
-                {currentSelection === "overview" ? (
-                    <div className='overview'>
-                        <TablePacientes />
-                        <TableConsultasOverview />
-                    </div>
-                ) : currentSelection === "pacientes" ? (
-                    <>
-                        <TablePacientes />
-                    </>
-                ) : currentSelection === "consultas" ? (
-                    <>
-                        <TableConsultas />
-                    </>
-                ) : currentSelection === "agenda" ? (
-                    <>
-                        <AgendaPage />
-                    </>
-                ) : currentSelection === "convenio" ? (
-                    <>
-                        <TableConvenios />
-                    </>
-                ) : currentSelection === "atendentes" ? (
-                    <>
-                        <TableAtendentes />
-                    </>
-                ) : (
-                    currentSelection === "medicos" && (
-                        <>
-                            <TableMedicos />
-                        </>
-                    )
-                )}
-            </main>
-        </DashboardContainer>
-    );
+  compareTimePassedSinceLastLogin();
+  if (!localStorage.getItem("@clinicaToken")) {
+    return <Navigate to={"/"} />;
+  }
+  return (
+    <DashboardContainer>
+      <SideMenu />
+      <main>
+        <Header />
+        <InfoBoxes />
+        {currentSelection === "overview" ? (
+          <div className='overview'>
+            <TablePacientes />
+            <TableConsultasOverview />
+          </div>
+        ) : currentSelection === "pacientes" ? (
+          <>
+            <TablePacientes />
+          </>
+        ) : currentSelection === "consultas" ? (
+          <>
+            <TableConsultas today={date} />
+          </>
+        ) : currentSelection === "agenda" ? (
+          <>
+            <AgendaPage />
+          </>
+        ) : currentSelection === "convenio" ? (
+          <>
+            <TableConvenios />
+          </>
+        ) : currentSelection === "atendentes" ? (
+          <>
+            <TableAtendentes />
+          </>
+        ) : (
+          currentSelection === "medicos" && (
+            <>
+              <TableMedicos />
+            </>
+          )
+        )}
+      </main>
+    </DashboardContainer>
+  );
 };
 export default Dashboard;

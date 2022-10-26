@@ -13,12 +13,22 @@ export const InputContainer = styled.div`
     font-size: 1rem;
     color: var(--tx-p);
     transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    ::placeholder {
+      color: transparent;
+    }
+
+    :focus {
+      ::placeholder {
+        color: var(--border);
+      }
+    }
   }
-  .input-icon{
+  .input-icon {
     position: absolute;
     right: 12px;
     bottom: 10px;
-    svg{
+    svg {
       color: var(--tx-p);
     }
   }
@@ -52,9 +62,8 @@ export const InputContainer = styled.div`
     max-width: 90%;
   }
 
-  textarea{
+  textarea {
     resize: none;
-    
   }
 
   .input:focus,
@@ -64,8 +73,8 @@ export const InputContainer = styled.div`
     border: 1.5px solid var(--bg-t);
   }
 
-
-  .input:focus ~ label, textarea:valid ~ label,
+  .input:focus ~ label,
+  textarea:valid ~ label,
   input:valid ~ label,
   select:valid ~ label,
   input[type="email"]:not(:placeholder-shown) ~ label,
@@ -80,9 +89,8 @@ export const InputContainer = styled.div`
   input[type="date"] ~ label {
     background-color: var(--bg-s);
   }
-  input[type=date]{
+  input[type="date"] {
     height: 48px;
-
   }
   select {
     text-transform: capitalize;

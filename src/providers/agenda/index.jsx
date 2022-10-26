@@ -6,73 +6,76 @@ import { tranforTimeInMinutes } from "../../utils";
 const AgendaContext = createContext();
 
 export const AgendaProvider = ({ children }) => {
-    const [currentMedicoId, setCurrentMedicoId] = useState("");
-    const [date, setDate] = useState(new Date());
-    const [horarios, setHorarios] = useState([]);
-    const [agendaId, setAgendaId] = useState("");
+  const [currentMedicoId, setCurrentMedicoId] = useState("");
+  const [date, setDate] = useState();
+  const [horarios, setHorarios] = useState([]);
+  const [agendaId, setAgendaId] = useState("");
 
-    useEffect(() => {
-        const currentData = date.toLocaleDateString().replaceAll("/", "-");
-        if (currentMedicoId !== "") {
-            api.get(
-                `agendas/medico/${currentMedicoId}/?data=${currentData}`
-            ).then(({ data }) => setHorarios(data.results));
-        }
-    }, [currentMedicoId, date]);
+  useEffect(() => {
+    const currentData = date?.toLocaleDateString().replaceAll("/", "-");
+    if (currentMedicoId !== "") {
+      api
+        .get(`agendas/medico/${currentMedicoId}/?data=${currentData}`)
+        .then(({ data }) => setHorarios(data.results));
+    }
+  }, [currentMedicoId, date]);
 
-    const createHorario = async (data) => {
-        let res = {};
-        await api
-            .post(`agendas/medico/${currentMedicoId}/`, data)
-            .then(({ data }) => {
-                res = data;
-            })
-            .catch((err) => {
-                console.log(err);
-                toast.error(err.response.data.detail);
-            });
-        return res;
-    };
+  const createHorario = async (data) => {
+    let res = {};
+    await api
+      .post(`agendas/medico/${currentMedicoId}/`, data)
+      .then(({ data }) => {
+        res = data;
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error(err.response.data.detail);
+      });
+    return res;
+  };
 
-    const getHorarios = async () => {
-        const token = localStorage.getItem("@clinicaToken") || "";
+  const getHorarios = async () => {
+    const token = localStorage.getItem("@clinicaToken") || "";
 
-        const currentData = date.toLocaleDateString().replaceAll("/", "-");
-        await api
-            .get(`agendas/medico/${currentMedicoId}/?data=${currentData}`, {
-                headers: { authorization: `Bearer ${token}` },
-            })
-            .then(({ data }) => setHorarios(data.results));
-    };
+    const currentData = date.toLocaleDateString().replaceAll("/", "-");
+    await api
+      .get(`agendas/medico/${currentMedicoId}/?data=${currentData}`, {
+        headers: { authorization: `Bearer ${token}` },
+      })
+      .then(({ data }) => {
+        console.log(data);
+        setHorarios(data.results);
+      });
+  };
 
-    const deleteHorario = async (id) => {
-        const token = localStorage.getItem("@clinicaToken") || "";
+  const deleteHorario = async (id) => {
+    const token = localStorage.getItem("@clinicaToken") || "";
 
-        await api
-            .delete(`agendas/${id}/`, {
-                headers: { authorization: `Bearer ${token}` },
-            })
-            .then(() => toast.success("Horario apagado!"))
-            .catch(() => toast.error("Erro em apagar horario!"));
-    };
+    await api
+      .delete(`agendas/${id}/`, {
+        headers: { authorization: `Bearer ${token}` },
+      })
+      .then(() => toast.success("Horario apagado!"))
+      .catch(() => toast.error("Erro em apagar horario!"));
+  };
 
-    return (
-        <AgendaContext.Provider
-            value={{
-                currentMedicoId,
-                setCurrentMedicoId,
-                date,
-                setDate,
-                horarios,
-                createHorario,
-                getHorarios,
-                agendaId,
-                setAgendaId,
-                deleteHorario,
-            }}>
-            {children}
-        </AgendaContext.Provider>
-    );
+  return (
+    <AgendaContext.Provider
+      value={{
+        currentMedicoId,
+        setCurrentMedicoId,
+        date,
+        setDate,
+        horarios,
+        createHorario,
+        getHorarios,
+        agendaId,
+        setAgendaId,
+        deleteHorario,
+      }}>
+      {children}
+    </AgendaContext.Provider>
+  );
 };
 
 export const useAgenda = () => useContext(AgendaContext);

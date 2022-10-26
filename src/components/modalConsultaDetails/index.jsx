@@ -9,14 +9,14 @@ import { useConsulta } from "../../providers/consultas";
 import { useAgenda } from "../../providers/agenda";
 
 const ModalConsulta = ({ consultaId }) => {
-  console.log(consultaId);
   const { openModalConsultaDetails, openCloseModalConsultaDetails } =
     useModal();
   const { patchConsulta, getConsultas, consultas } = useConsulta();
   const { getHorarios } = useAgenda();
-  const consultaInfo = consultas.results.find(
-    (consulta) => consulta.id === consultaId
+  const [consultaInfo,_] = useState(
+    consultas.results.find((consulta) => consulta.id === consultaId)
   );
+
   return (
     <>
       <Modal
@@ -35,8 +35,7 @@ const ModalConsulta = ({ consultaId }) => {
             <p
               style={{
                 marginRight: "8px",
-              }}
-            >
+              }}>
               Compareceu: {consultaInfo.compareceu ? "Sim" : "Não"}{" "}
               <span
                 onClick={async () => {
@@ -49,8 +48,7 @@ const ModalConsulta = ({ consultaId }) => {
                   await getConsultas();
                 }}
                 style={{ display: "inline-block" }}
-                className="undelineColored"
-              >
+                className='undelineColored'>
                 {" "}
                 Confirmar Presença
               </span>
@@ -58,8 +56,7 @@ const ModalConsulta = ({ consultaId }) => {
             <p
               style={{
                 marginRight: "8px",
-              }}
-            >
+              }}>
               Confirmado: {consultaInfo.confirmado ? "Sim" : "Não"}
               <span
                 onClick={async () => {
@@ -71,8 +68,7 @@ const ModalConsulta = ({ consultaId }) => {
                   );
                   await getConsultas();
                 }}
-                className="undelineColored"
-              >
+                className='undelineColored'>
                 {" "}
                 Confirmar Consulta
               </span>
@@ -81,9 +77,8 @@ const ModalConsulta = ({ consultaId }) => {
             <p
               style={{
                 marginRight: "8px",
-              }}
-            >
-              Pago: {consultaInfo.pago ? "Sim" : "Não"} 
+              }}>
+              Pago: {consultaInfo.pago ? "Sim" : "Não"}
               <span
                 onClick={async () => {
                   await patchConsulta(
@@ -93,10 +88,9 @@ const ModalConsulta = ({ consultaId }) => {
                   await getConsultas();
                 }}
                 style={{ display: "inline-block" }}
-                className="undelineColored"
-              >
+                className='undelineColored'>
                 {" "}
-                 Confirmar Pagamento
+                Confirmar Pagamento
               </span>
             </p>
 
@@ -106,7 +100,7 @@ const ModalConsulta = ({ consultaId }) => {
             <p>CPF: {consultaInfo.paciente.cpf}</p>
             <p>Status: {consultaInfo.paciente.status}</p>
             <p>Telefone: {consultaInfo.paciente.telefone}</p>
-            <p className="undelineColored">Ver mais sobre o paciente</p>
+            <p className='undelineColored'>Ver mais sobre o paciente</p>
 
             <h4 style={{ marginTop: "16px" }}>Informação doutor</h4>
 
@@ -117,7 +111,7 @@ const ModalConsulta = ({ consultaId }) => {
               Registro Profissional: {consultaInfo.medico.registro_profissional}
             </p>
             <p>Telefone: {consultaInfo.medico.telefone}</p>
-            <p className="undelineColored">Ver mais sobre o médico</p>
+            <p className='undelineColored'>Ver mais sobre o médico</p>
             <Button
               text={
                 consultaInfo.consulta_cancelada

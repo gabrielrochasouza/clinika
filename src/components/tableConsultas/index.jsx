@@ -17,7 +17,7 @@ const TableConsultas = ({ today }) => {
   } = useModal();
   const [consultaId, setConsultaId] = useState("");
   useEffect(() => {
-    getConsultas(today);
+    getConsultas(today.toLocaleDateString().split("/").join("-"));
   }, []);
   return (
     <>
